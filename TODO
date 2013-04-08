@@ -1,0 +1,14 @@
+DownloadRouterConfig.py
+=======================
+
+Needs Fixing:
+-------------
+[ ] Separate the 'rewriteOutputFile' operations into their own function to
+    prevent any possible interruption/delays in downloading config files.
+[ ] Error checking for presense of 'routers.list' file in root directory.
+
+New Features:
+-------------
+[ ] Tidy up the application root directory by automatically creating a
+    subdirectory to hold router configuration files.
+[ ] Move application variables to a config file?

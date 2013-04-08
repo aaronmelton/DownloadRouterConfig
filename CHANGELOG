@@ -1,0 +1,19 @@
+DownloadRouterConfig.py 2.12 (2013-04-08)
+-----------------------------------------
++ Added LICENSE information to source code.
++ Removed company-specific information from code.
++ Initial source code commit to GitHub
+
+(specific details of what changed between v2.0 and v2.11 not captured)
+
+DownloadRouterConfig.py 2.0 (2012-03-26)
+----------------------------------------
++ Added logging functionality to keep track of which routers' configurations
+  were downloaded and the specific error code for those that were not.
+
+(specific details of what changed between v1.0 and v2.0 not captured)
+
+DownloadRouterConfig.py 1.0 (2012-11-02)
+----------------------------------------
+* Initial "release" of application build on Exscript. Includes only the most
+  basic functionality used to download router configs.
