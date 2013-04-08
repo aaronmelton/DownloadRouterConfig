@@ -14,13 +14,15 @@ Requirements:
 -------------
 1. This application is hard-coded to use the SSH2 protocol; If SSH v2 is not
    enabled on your router(s), you will need to:
-   a.) Add 'ip ssh version 2' to your Cisco router(s) configuration
+   a.) Add 'ip ssh version 2' to your Cisco router(s) configuration and any
+       associated access-list changes.
+   or
    b.) Alter the 'default_protocol' variable in the get_hosts_from_file
-       function to use a different protocol.
-2. A valid username/password to access the Cisco router.
+       function to use a different protocol enabled on your router(s).
+2. A valid username/password.
 3. A 'routers.lst' file in the same directory as the script which contains
    a list, one per line, of hostnames or IP addresses the application will
-   then connect to and download the running-config of.
+   then connect to download the running-config.
 
 Assumptions:
 ------------
@@ -39,16 +41,27 @@ Limitations:
    I wrote this application in an environment where Cisco routers authenticate
    against a Cisco ACS and found FOUR simultaneous requests to be the maximum
    number of requests before regular authentication failures began happening.
-   If you use static usernames/passwords in your environment, feel free to
-   increase the 'max_threads' variable in the 'Queue' function.
+   If you use static usernames/passwords in your environment, or your ACS is
+   more robust, feel free to increase the 'max_threads' variable in the
+   'Queue' function.
 
 Functionality:
 --------------
 1. Upon execution, the application will prompt the user for a username and
    password.  This username/password will be used to login to all routers
    specified in the 'routers.lst' file.
-2. The application will write the running-config contents of each router to
+2. The application will open an SSH v2 connection to each router in the
+   'routers.lst' file and use the credentials provided by the user to
+   authenticate.
+3. The application will pass a 'terminal length 0' command to the router to
+   avoid any page breaks which will interrupt router output.  It has been my
+   experience in testing that the autoinit() function provided by Exscript
+   fails to accomplish this, so I perform this task manually.
+4. The application will write the running-config contents of each router to
    a file using the format, 'HOSTNAME_Config_YYYY-MM-DD.txt', where HOSTNAME is
    the hostname (or IP address) specified in the 'routers.lst' file and
    YYYY-MM-DD is the numerical Year-Month-Day of the box executing the
    application.
+5. The application will write a 'status.txt' file that identifies the results
+   from each router.
+

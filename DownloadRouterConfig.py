@@ -19,9 +19,9 @@
 
 
 # Required Modules
-import datetime
-import Exscript
-import os
+import datetime					# Required for date format
+import Exscript					# Required for SSH, queue & logging functionality
+import os						# Required to determine OS of host
 
 from Exscript                   import Queue, Host, Logger
 from Exscript.protocols 		import SSH2
@@ -60,7 +60,7 @@ def downloadRouterConfig(job, host, socket):
 	
     outputFile.write(socket.response)		# Write contents of running config to output file
     outputFile.close()						# Close output file
-    socket.send('exit\r')					# Send the "exit" command to log out of router
+    socket.send('exit\r')					# Send the "exit" command to log out of router gracefully
     socket.close()							# Close SSH connection
     
 	# Different editors interpret line breaks differently so the code below cleans
@@ -81,13 +81,13 @@ def downloadRouterConfig(job, host, socket):
 hosts = get_hosts_from_file('routers.lst',default_protocol='ssh2',remove_duplicates=True)
 userCreds = read_login()		# Prompt the user for his name and password
 
-queue = Queue(verbose=1, max_threads=4)
-queue.add_account(userCreds)
-queue.run(hosts, downloadRouterConfig)
-queue.shutdown()
+queue = Queue(verbose=1, max_threads=4)	# Minimal messages, 4 threads
+queue.add_account(userCreds)			# Use supplied user credentials
+queue.run(hosts, downloadRouterConfig)	# Create queue using provided hosts
+queue.shutdown()						# End all running threads and close queue
 
 print
-print status(logger)	# Print status of operation to screen
+print status(logger)	# Print current % status of operation to screen
 print 
 
 logFile = open('status.txt', 'w')	# Open 'status.txt' file

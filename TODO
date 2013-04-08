@@ -3,9 +3,12 @@ DownloadRouterConfig.py
 
 Needs Fixing:
 -------------
+[ ] Adding a description of common errors encountered (as defined by and
+    recorded by the Exscript module)?
 [ ] Separate the 'rewriteOutputFile' operations into their own function to
     prevent any possible interruption/delays in downloading config files.
-[ ] Error checking for presense of 'routers.list' file in root directory.
+[ ] Error checking: 'routers.lst' exist?
+[ ] Error checking: Enable access upon login?
 
 New Features:
 -------------
