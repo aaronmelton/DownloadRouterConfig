@@ -48,11 +48,13 @@ logger = Logger()	# Log stuff
 def downloadRouterConfig(job, host, socket):
     print 
     socket.execute('terminal length 0')							# Disable user-prompt to page through config
+																# Exscript doesn't always recognize Cisco IOS
+																# for socket.autoinit() to work correctly
 	
     print '--> Extracting running-config from '+host.get_name()
 	
     socket.execute('show run')									# Show running config
-    outputFileName = host.get_name()+'_Config_'+date+'.txt'     #Define output filename based on hostname and date
+    outputFileName = host.get_name()+'_Config_'+date+'.txt'     # Define output filename based on hostname and date
     outputFile = file(outputFileName,'w')						# Open output file (will overwrite contents)
 	
     print
@@ -90,9 +92,9 @@ print
 print status(logger)	# Print current % status of operation to screen
 print 
 
-logFile = open('status.txt', 'w')	# Open 'status.txt' file
+logFile = open('status.log', 'w')	# Open 'status.log' file
 logFile.write(summarize(logger))	# Write results of program to file
-logFile.close()						# Close 'status.txt' file
+logFile.close()						# Close 'status.log' file
 
 print 
 print 'Backup completed.'
