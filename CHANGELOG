@@ -1,3 +1,16 @@
+DownloadRouterConfig.py 2.13 (2013-04-10)
+-----------------------------------------
++ Updated CHANGELOG: New version
++ Updated README: Cleaned up some text
++ Updated TODO: Changed format a bit, checked off item
+* Moved some code around just to tidy things up (functionality not changed).
+- Removed unimportant debugging information from the code that displayed
+  current operation as the logging capabilities of the queue are informative
+  enough.
+- Removed the 'rewriteOutputFile' operation because testing showed that
+  Notepad++ (the default editor I use in Windows) is the only application
+  that displays duplicate blank lines whereas other text editors do not.
+
 DownloadRouterConfig.py 2.12 (2013-04-08)
 -----------------------------------------
 + Added LICENSE information to source code.
@@ -15,5 +28,5 @@ DownloadRouterConfig.py 2.0 (2012-03-26)
 
 DownloadRouterConfig.py 1.0 (2012-11-02)
 ----------------------------------------
-* Initial "release" of application build on Exscript. Includes only the most
+* Initial "release" of application built on Exscript. Includes only the most
   basic functionality used to download router configs.

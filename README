@@ -37,9 +37,9 @@ Limitations:
 ------------
 1. This application uses the same username/password to access ALL routers. If
    your routers use unique usernames/passwords, then this script will not work.
-2. This application is hard-coded to connect to FOUR routers simultaneously.
+2. This application is hard-coded to connect to four routers simultaneously.
    I wrote this application in an environment where Cisco routers authenticate
-   against a Cisco ACS and found FOUR simultaneous requests to be the maximum
+   against a Cisco ACS and found four simultaneous requests to be the maximum
    number of requests before regular authentication failures began happening.
    If you use static usernames/passwords in your environment, or your ACS is
    more robust, feel free to increase the 'max_threads' variable in the
@@ -56,7 +56,7 @@ Functionality:
 3. The application will pass a 'terminal length 0' command to the router to
    avoid any page breaks which will interrupt router output.  It has been my
    experience in testing that the autoinit() function provided by Exscript
-   fails to accomplish this, so I perform this task manually.
+   fails to detect Cisco IOS on some routers in our environment.
 4. The application will write the running-config contents of each router to
    a file using the format, 'HOSTNAME_Config_YYYY-MM-DD.txt', where HOSTNAME is
    the hostname (or IP address) specified in the 'routers.lst' file and
@@ -64,4 +64,3 @@ Functionality:
    application.
 5. The application will write a 'status.log' file that identifies the results
    from each router.
-

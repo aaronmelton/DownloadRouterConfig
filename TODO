@@ -3,15 +3,18 @@ DownloadRouterConfig.py
 
 Needs Fixing:
 -------------
-[ ] Adding a description of common errors encountered (as defined by and
-    recorded by the Exscript module)?
-[ ] Separate the 'rewriteOutputFile' operations into their own function to
-    prevent any possible interruption/delays in downloading config files.
-[ ] Error checking: 'routers.lst' exist?
-[ ] Error checking: Enable access upon login?
 
 New Features:
 -------------
-[ ] Tidy up the application root directory by automatically creating a
+[ ] 1. Tidy up the application root directory by automatically creating a
     subdirectory to hold router configuration files.
-[ ] Move application variables to a config file?
+[ ] 2. Move application variables to a config file?
+[ ] 3. Error checking: 'routers.lst' exist?
+[ ] 4. Error checking: Enable access upon login?
+
+Nice To Have:
+-------------
+[ ] 1. Adding a description of common errors encountered (as defined by and
+    recorded by the Exscript module)?
+[X] 2. Separate the 'rewriteOutputFile' operations into their own function to
+    prevent any possible interruption/delays in downloading config files.
