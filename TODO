@@ -6,15 +6,15 @@ Needs Fixing:
 
 New Features:
 -------------
-[ ] 1. Tidy up the application root directory by automatically creating a
+[ ] Move application variables to a config file?
+[ ] Error checking: Enable access upon login?
+[X] Error checking: 'routers.lst' exist?
+[X] Tidy up the application root directory by automatically creating a
     subdirectory to hold router configuration files.
-[ ] 2. Move application variables to a config file?
-[ ] 3. Error checking: 'routers.lst' exist?
-[ ] 4. Error checking: Enable access upon login?
 
 Nice To Have:
 -------------
-[ ] 1. Adding a description of common errors encountered (as defined by and
+[ ] Adding a description of common errors encountered (as defined by and
     recorded by the Exscript module)?
-[X] 2. Separate the 'rewriteOutputFile' operations into their own function to
+[X] Separate the 'rewriteOutputFile' operations into their own function to
     prevent any possible interruption/delays in downloading config files.
