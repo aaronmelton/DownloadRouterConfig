@@ -40,11 +40,11 @@ def downloadRouterConfig(job, host, socket):
 										# for socket.autoinit() to work correctly
 	socket.execute('show run')	# Show running config
 
-	logDirectory = ('logs_'+date+'/')	# Define directory to hold log files
-	if not os.path.exists(logDirectory): os.mkdir(logDirectory) # Create log file directory if it doesn't exist
+	configDirectory = ('configs_'+date+'/')	# Define directory to hold config files
+	if not os.path.exists(configDirectory): os.mkdir(configDirectory) # Create config file directory if it doesn't exist
 		
 	outputFileName = host.get_name()+'_Config_'+date+'.txt'	# Define output filename based on hostname and date
-	outputFile = file(logDirectory+outputFileName,'w')	# Open output file (will overwrite contents)
+	outputFile = file(configDirectory+outputFileName,'w')	# Open output file (will overwrite contents)
 
 	outputFile.write(socket.response)	# Write contents of running config to output file
 	outputFile.close()					# Close output file
