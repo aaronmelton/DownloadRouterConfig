@@ -77,7 +77,7 @@ try:	# Check for existance of 'routers.lst'; If exists, continue with program
 
 	print status(logger)	# Print current % status of operation to screen
 
-	logFile = open('status.log', 'w')	# Open 'status.log' file
+	logFile = open('status_'+date+'.log', 'w')	# Open 'status.log' file
 	logFile.write(summarize(logger))	# Write results of program to file
 	logFile.close()						# Close 'status.log' file
 	

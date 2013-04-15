@@ -3,6 +3,9 @@ DownloadRouterConfig.py 2.14 (2013-04-12)
 ! Discovered bug: Queue function seems to cap out at 4,573 hosts?
 + Renamed 'logs' directory to 'configs' to be consistent with what
   the application is actually doing. (It's not downloading logs.)
++ Added date to the 'status.log' file for easier identification and to
+  prevent the file being recently overwritten.  May eventually change
+  date to be a timestamp instead?
 
 DownloadRouterConfig.py 2.14 (2013-04-11)
 -----------------------------------------
