@@ -62,7 +62,7 @@ try:	# Check for existance of 'routers.lst'; If exists, continue with program
 	with open('routers.lst'): pass
 	# Define 'date' variable for use in the output filename
 	date = datetime.datetime.now()		# Determine today's date
-	date = date.strftime('%Y-%m-%d')	# Format date as YYYY-MM-DD
+	date = date.strftime('%Y%m%d')	# Format date as YYYYMMDD
 
 	# Read hosts from specified file & remove duplicate entries, set protocol to SSH2
 	hosts = get_hosts_from_file('routers.lst',default_protocol='ssh2',remove_duplicates=True)

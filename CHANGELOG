@@ -1,3 +1,12 @@
+DownloadRouterConfig.py 2.14 (2013-04-16)
+-----------------------------------------
+! Determined there was no bug with the queuing function; I was passing
+  the program a very large list of hosts that contained duplicate
+  hostnames that I thought I had removed.  The function removed all
+  these duplicates resulting in a number lower than I was expecting.
+- Changing date string from 'YYYY-MM-DD' to 'YYYYMMDD' to match common
+  filenames used in our environment.
+
 DownloadRouterConfig.py 2.14 (2013-04-12)
 -----------------------------------------
 ! Discovered bug: Queue function seems to cap out at 4,573 hosts?

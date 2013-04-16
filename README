@@ -58,9 +58,9 @@ Functionality:
    experience in testing that the autoinit() function provided by Exscript
    fails to detect Cisco IOS on some routers in our environment.
 4. The application will write the running-config contents of each router to
-   a file using the format, 'HOSTNAME_Config_YYYY-MM-DD.txt', where HOSTNAME is
+   a file using the format, 'HOSTNAME_Config_YYYYMMDD.txt', where HOSTNAME is
    the hostname (or IP address) specified in the 'routers.lst' file and
    YYYY-MM-DD is the numerical Year-Month-Day of the box executing the
    application.
-5. The application will write a 'status_YYYY-MM-DD.log' file that identifies the results
+5. The application will write a 'status_YYYYMMDD.log' file that identifies the results
    from each router.
