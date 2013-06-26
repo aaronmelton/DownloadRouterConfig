@@ -60,7 +60,7 @@ Functionality:
 4. The application will write the running-config contents of each router to
    a file using the format, 'HOSTNAME_Config_YYYYMMDD.txt', where HOSTNAME is
    the hostname (or IP address) specified in the 'routers.lst' file and
-   YYYY-MM-DD is the numerical Year-Month-Day of the box executing the
+   YYYYMMDD is the numerical Year-Month-Day of the box executing the
    application.
-5. The application will write a 'status_YYYYMMDD.log' file that identifies the results
-   from each router.
+5. The application will write a 'status_YYYYMMDD.log' file that identifies the
+   connectivity results from each router.
