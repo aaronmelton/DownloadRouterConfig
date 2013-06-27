@@ -1,17 +1,10 @@
-Download Router Configuration
------------------------------
-Please enter your user name [aaron]: 
+Download Router Configuration v2.14
+-----------------------------------
+
+Please enter your user name [aaron]: cisco
 Please enter your password:
-In progress: [192.168.1.1] 0/1 (0%)
---> Extracting running-config from 192.168.1.1
 
---> Writing running-config to 192.168.1.1_Config_2013-04-08.txt
-
-192.168.1.1 succeeded.
-
+10.10.10.14 succeeded.
 One action done (succeeded)
 
-
-Backup completed.
-
-c:\Temp>
+C:\Temp\>
