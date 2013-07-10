@@ -31,20 +31,21 @@ from Exscript.util.interact     import read_login
 from Exscript.util.report		import status,summarize
 
 logger = Logger()	# Log stuff
-@log_to(logger)	# Logging descriptor
-@autologin()	# Exscript login descriptor
+@log_to(logger)		# Logging descriptor
+@autologin()		# Exscript login descriptor
 
 def downloadRouterConfig(job, host, socket):
 	socket.execute('terminal length 0')	# Disable user-prompt to page through config
 										# Exscript doesn't always recognize Cisco IOS
 										# for socket.autoinit() to work correctly
+
 	socket.execute('show run')	# Show running config
 
 	configDirectory = ('configs_'+date+'/')	# Define directory to hold config files
 	if not os.path.exists(configDirectory): os.mkdir(configDirectory) # Create config file directory if it doesn't exist
 		
 	outputFileName = host.get_name()+'_Config_'+date+'.txt'	# Define output filename based on hostname and date
-	outputFile = file(configDirectory+outputFileName,'w')	# Open output file (will overwrite contents)
+	outputFile = file(configDirectory+outputFileName, 'w')	# Open output file (will overwrite contents)
 
 	outputFile.write(socket.response)	# Write contents of running config to output file
 	outputFile.close()					# Close output file
@@ -54,14 +55,14 @@ def downloadRouterConfig(job, host, socket):
 # Determine OS in use and clear screen of previous output
 os.system('cls' if os.name=='nt' else 'clear')
 
-print 'Download Router Configuration v2.14'
+print 'Download Router Configuration v2.15'
 print '-----------------------------------'
 print
 
-try:	# Check for existance of 'routers.lst'; If exists, continue with program
-	with open('routers.lst'): pass
+try:# Check for existance of 'routers.lst'; If exists, continue with program
+	with open('routers.lst', 'r'): pass
 	# Define 'date' variable for use in the output filename
-	date = datetime.datetime.now()		# Determine today's date
+	date = datetime.datetime.now()	# Determine today's date
 	date = date.strftime('%Y%m%d')	# Format date as YYYYMMDD
 
 	# Read hosts from specified file & remove duplicate entries, set protocol to SSH2
@@ -78,11 +79,11 @@ try:	# Check for existance of 'routers.lst'; If exists, continue with program
 	print status(logger)	# Print current % status of operation to screen
 
 	logFile = open('status_'+date+'.log', 'w')	# Open 'status.log' file
-	logFile.write(summarize(logger))	# Write results of program to file
-	logFile.close()						# Close 'status.log' file
+	logFile.write(summarize(logger))			# Write results of program to file
+	logFile.close()								# Close 'status.log' file
 	
 except IOError:	# If 'routers.lst' does not exist, provide error and quit
-	print 'File routers.lst does not exist!'
+	print 'File \'routers.lst\' does not exist!'
 	print 'Please create a file named \'routers.lst\' and place it in the same directory'
 	print 'as the script. This file must contain a list, one per line, of hostnames or IP'
 	print 'addresses the application will then connect to download the running-config.'

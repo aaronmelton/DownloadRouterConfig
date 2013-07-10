@@ -1,3 +1,9 @@
+DownloadRouterConfig.py 2.15 (2013-07-10)
+-----------------------------------------
++ Updated the file open operation to specify opening the routers.lst file
+  as read only.
++ Minor corrections to the IOError message.
+
 DownloadRouterConfig.py 2.14 (2013-04-16)
 -----------------------------------------
 ! Determined there was no bug with the queuing function; I was passing
