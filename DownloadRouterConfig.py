@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #
 # DownloadRouterConfig.py
 # Copyright (C) 2012-2013 Aaron Melton <aaron(at)aaronmelton(dot)com>
