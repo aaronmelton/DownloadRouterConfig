@@ -161,3 +161,15 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+#############
+## CUSTOM
+#############
+
+# Microsoft Visio
+.vsd
+
+# Application specific
+configs_*/
+routers.txt
+status_*.log
