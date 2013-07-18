@@ -55,18 +55,18 @@ def downloadRouterConfig(job, host, socket):
 # Determine OS in use and clear screen of previous output
 os.system('cls' if os.name=='nt' else 'clear')
 
-print 'Download Router Configuration v2.15'
+print 'Download Router Configuration v2.16'
 print '-----------------------------------'
 print
 
-try:# Check for existance of 'routers.lst'; If exists, continue with program
-	with open('routers.lst', 'r'): pass
+try:# Check for existance of 'routers.txt'; If exists, continue with program
+	with open('routers.txt', 'r'): pass
 	# Define 'date' variable for use in the output filename
 	date = datetime.datetime.now()	# Determine today's date
 	date = date.strftime('%Y%m%d')	# Format date as YYYYMMDD
 
 	# Read hosts from specified file & remove duplicate entries, set protocol to SSH2
-	hosts = get_hosts_from_file('routers.lst',default_protocol='ssh2',remove_duplicates=True)
+	hosts = get_hosts_from_file('routers.txt',default_protocol='ssh2',remove_duplicates=True)
 	userCreds = read_login()	# Prompt the user for his name and password
 
 	print # Required for pretty spacing. :)
@@ -82,8 +82,10 @@ try:# Check for existance of 'routers.lst'; If exists, continue with program
 	logFile.write(summarize(logger))			# Write results of program to file
 	logFile.close()								# Close 'status.log' file
 	
-except IOError:	# If 'routers.lst' does not exist, provide error and quit
-	print 'File \'routers.lst\' does not exist!'
-	print 'Please create a file named \'routers.lst\' and place it in the same directory'
-	print 'as the script. This file must contain a list, one per line, of hostnames or IP'
-	print 'addresses the application will then connect to download the running-config.'
+except IOError:	# If 'routers.txt' does not exist, create example and exit
+	print 'Required file \'routers.txt\' not found; One has been created for you.'
+	print 'This file must contain a list, one per line, of Hostnames or IP addresses the'
+	print 'application will then connect to download the running-config.'
+	exampleFile = open('routers.txt', 'w')	# Create example 'routers.txt' file
+	exampleFile.write('192.168.1.1\n'+'or\n'+'RouterHostname')
+	exampleFile.close()

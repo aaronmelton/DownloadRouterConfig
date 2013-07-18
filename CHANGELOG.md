@@ -1,3 +1,13 @@
+## DownloadRouterConfig.py 2.16 (2013-07-18) ##
+* Changed application to search for 'routers.txt' file instead of 'routers.lst'
+  because some users were complaining about '.lst' not being a registered file
+  extension in Windows. (Their user permissions did not allow them to associate
+  this extension with Notepad, etc.)
+* Changed the IOError function so that it would actually create a 'routers.txt'
+  file should one be missing.  I felt this might be a better way to handle the
+  situation should someone aquire the binary of this application without any
+  supporting documentation to describe missing required files.
+
 ## DownloadRouterConfig.py 2.15 (2013-07-10) ##
 * Updated the file open operation to specify opening the routers.lst file
   as read only.
@@ -12,7 +22,6 @@
   filenames used in our environment.
 
 ## DownloadRouterConfig.py 2.14 (2013-04-12) ##
-* Discovered bug: Queue function seems to cap out at 4,573 hosts?
 * Renamed 'logs' directory to 'configs' to be consistent with what
   the application is actually doing. (It's not downloading logs.)
 * Added date to the 'status.log' file for easier identification and to
