@@ -1,0 +1,119 @@
+show run
+Building configuration...
+
+Current configuration : 1721 bytes
+!
+version 12.4
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+!
+aaa new-model
+!
+!
+aaa authentication login default local enable
+aaa authorization exec default local if-authenticated 
+!
+aaa session-id common
+!
+resource policy
+!
+ip cef
+!
+!
+no ip dhcp use vrf connected
+!
+ip dhcp pool LocalDHCP
+   network 192.168.1.0 255.255.255.248
+   default-router 192.168.1.1 
+!
+!
+no ip domain lookup
+ip ssh version 2
+!
+!
+!
+username aaron privilege 15 password 0 password
+!
+! 
+!
+!
+!
+!
+interface FastEthernet0
+ switchport mode trunk
+!
+interface FastEthernet1
+ switchport mode trunk
+!
+interface FastEthernet2
+ switchport mode trunk
+!
+interface FastEthernet3
+ switchport mode trunk
+!
+interface FastEthernet4
+ ip address dhcp
+ ip access-group ACLin in
+ ip access-group ACLout out
+ ip nat outside
+ ip virtual-reassembly
+ ip route-cache flow
+ duplex auto
+ speed auto
+ no cdp enable
+!
+interface Vlan1
+ ip address 192.168.1.1 255.255.255.248
+ ip nat inside
+ ip virtual-reassembly
+ ip route-cache flow
+!
+ip route 0.0.0.0 0.0.0.0 dhcp
+!
+!
+no ip http server
+no ip http secure-server
+!
+ip access-list extended ACLin
+ permit icmp any any
+ permit ip any any
+ permit tcp any any
+ permit udp any any
+ip access-list extended ACLout
+ permit icmp any any
+ permit ip any any
+ permit tcp any any
+ permit udp any any
+ip access-list extended LocalOnlyIn
+ permit ip any any
+ permit tcp any any
+ permit udp any any
+ permit icmp any any
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ no modem enable
+line aux 0
+line vty 0 4
+ access-class LocalOnlyIn in
+ timeout login response 300
+ transport input ssh
+!
+scheduler max-task-time 5000
+end
+
+Router#
