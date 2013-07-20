@@ -52,21 +52,34 @@ def downloadRouterConfig(job, host, socket):
 	socket.send('exit\r')				# Send the "exit" command to log out of router gracefully
 	socket.close()						# Close SSH connection
 
+def fileExist(fileName):
+# Check current path for existing file
+	try:
+		with open(fileName, 'r') as openedFile:
+			# If file exists (can be opened), return true
+			return 1
+	except IOError:
+		# If file does not exists (can't ben opened), return false
+		return 0
+
 # Determine OS in use and clear screen of previous output
 os.system('cls' if os.name=='nt' else 'clear')
 
-print 'Download Router Configuration v2.16'
+print 'Download Router Configuration v2.17'
 print '-----------------------------------'
 print
 
-try:# Check for existance of 'routers.txt'; If exists, continue with program
-	with open('routers.txt', 'r'): pass
+# Define file with router IP Addresses or Hostnames
+routerFile = 'routers.txt'
+
+# Check for existance of routerFile; If exists, continue with program
+if fileExist(routerFile):
 	# Define 'date' variable for use in the output filename
 	date = datetime.datetime.now()	# Determine today's date
 	date = date.strftime('%Y%m%d')	# Format date as YYYYMMDD
 
 	# Read hosts from specified file & remove duplicate entries, set protocol to SSH2
-	hosts = get_hosts_from_file('routers.txt',default_protocol='ssh2',remove_duplicates=True)
+	hosts = get_hosts_from_file(routerFile,default_protocol='ssh2',remove_duplicates=True)
 	userCreds = read_login()	# Prompt the user for his name and password
 
 	print # Required for pretty spacing. :)
@@ -81,11 +94,21 @@ try:# Check for existance of 'routers.txt'; If exists, continue with program
 	logFile = open('status_'+date+'.log', 'w')	# Open 'status.log' file
 	logFile.write(summarize(logger))			# Write results of program to file
 	logFile.close()								# Close 'status.log' file
-	
-except IOError:	# If 'routers.txt' does not exist, create example and exit
-	print 'Required file \'routers.txt\' not found; One has been created for you.'
-	print 'This file must contain a list, one per line, of Hostnames or IP addresses the'
-	print 'application will then connect to download the running-config.'
-	exampleFile = open('routers.txt', 'w')	# Create example 'routers.txt' file
-	exampleFile.write('192.168.1.1\n'+'or\n'+'RouterHostname')
-	exampleFile.close()
+
+# If routerFile does not exist, create example and exit
+else:
+	# Attempt to open routerFile to create an example
+	try:
+		with open (routerFile, 'w') as exampleFile:
+			# Write example IP Addresses or Hostnames to routerFile
+			exampleFile.write('192.168.1.1\n192.168.1.2\nRouterA\nRouterB\nRouterC\netc...')
+			# Print error message
+			print 'Required file '+routerFile+' not found; One has been created for you.'
+			print 'This file must contain a list, one per line, of Hostnames or IP addresses the'
+			print 'application will then connect to download the running-config.'
+	# If unable to write file for whatever reason, just print error message
+	except IOError:
+		# Print error message
+		print 'Required file '+routerFile+' not found.'
+		print 'This file must contain a list, one per line, of Hostnames or IP addresses the'
+		print 'application will then connect to download the running-config.'
