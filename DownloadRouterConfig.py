@@ -31,15 +31,15 @@ from Exscript.util.interact     import read_login
 from Exscript.util.report		import status,summarize
 
 logger = Logger()	# Log stuff
-@log_to(logger)		# Logging descriptor
-@autologin()		# Exscript login descriptor
+@log_to(logger)		# Logging decorator; Must precede downloadRouterConfig!
+@autologin()		# Exscript login decorator; Must precede downloadRouterConfig!
 
 def downloadRouterConfig(job, host, socket):
-	socket.execute('terminal length 0')	# Disable user-prompt to page through config
+	socket.execute("terminal length 0")	# Disable user-prompt to page through config
 										# Exscript doesn't always recognize Cisco IOS
 										# for socket.autoinit() to work correctly
 
-	socket.execute('show run')	# Show running config
+	socket.execute("show run")	# Show running config
 
 	configDirectory = ('configs_'+date+'/')	# Define directory to hold config files
 	if not os.path.exists(configDirectory): os.mkdir(configDirectory) # Create config file directory if it doesn't exist
@@ -65,8 +65,8 @@ def fileExist(fileName):
 # Determine OS in use and clear screen of previous output
 os.system('cls' if os.name=='nt' else 'clear')
 
-print 'Download Router Configuration v2.17'
-print '-----------------------------------'
+print "Download Router Configuration v2.17"
+print "-----------------------------------"
 print
 
 # Define file with router IP Addresses or Hostnames
@@ -101,14 +101,14 @@ else:
 	try:
 		with open (routerFile, 'w') as exampleFile:
 			# Write example IP Addresses or Hostnames to routerFile
-			exampleFile.write('192.168.1.1\n192.168.1.2\nRouterA\nRouterB\nRouterC\netc...')
+			exampleFile.write("192.168.1.1\n192.168.1.2\nRouterA\nRouterB\nRouterC\netc...")
 			# Print error message
-			print 'Required file '+routerFile+' not found; One has been created for you.'
-			print 'This file must contain a list, one per line, of Hostnames or IP addresses the'
-			print 'application will then connect to download the running-config.'
+			print "Required file "+routerFile+" not found; One has been created for you."
+			print "This file must contain a list, one per line, of Hostnames or IP addresses the"
+			print "application will then connect to download the running-config."
 	# If unable to write file for whatever reason, just print error message
 	except IOError:
 		# Print error message
-		print 'Required file '+routerFile+' not found.'
-		print 'This file must contain a list, one per line, of Hostnames or IP addresses the'
-		print 'application will then connect to download the running-config.'
+		print "Required file "+routerFile+" not found."
+		print "This file must contain a list, one per line, of Hostnames or IP addresses the"
+		print "application will then connect to download the running-config."
