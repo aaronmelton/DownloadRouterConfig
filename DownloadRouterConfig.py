@@ -59,20 +59,20 @@ def fileExist(fileName):
 			# If file exists (can be opened), return true
 			return 1
 	except IOError:
-		# If file does not exists (can't ben opened), return false
+		# If file does not exists (can't be opened), return false
 		return 0
 
 # Determine OS in use and clear screen of previous output
 os.system('cls' if os.name=='nt' else 'clear')
 
-print "Download Router Configuration v2.17"
-print "-----------------------------------"
+print "Download Router Configuration v2.1.17"
+print "-------------------------------------"
 print
 
 # Define file with router IP Addresses or Hostnames
 routerFile = 'routers.txt'
 
-# Check for existance of routerFile; If exists, continue with program
+# Check for existence of routerFile; If exists, continue with program
 if fileExist(routerFile):
 	# Define 'date' variable for use in the output filename
 	date = datetime.datetime.now()	# Determine today's date

@@ -1,5 +1,11 @@
+## DownloadRouterConfig.py v2.1.17 (2013-07-29) ##
+* Updating project to use Semantic Versioning: http://semver.org/
+  Previous project versions were described using a MAJOR.PATCH increment
+  instead of MAJOR.MINOR.PATCH increment.  In other words, adjusting the
+  previous version 2.17 -- it's correct Semantic Version would be 2.1.17.
+
 ## DownloadRouterConfig.py 2.17 (2013-07-20) ##
-* Making application a bit more extendable through the use of functions and
+* Making application a bit more extendible through the use of functions and
   variables.
 * Improved file error handling.
 
@@ -10,7 +16,7 @@
   this extension with Notepad, etc.)
 * Changed the IOError function so that it would actually create a 'routers.txt'
   file should one be missing.  I felt this might be a better way to handle the
-  situation should someone aquire the binary of this application without any
+  situation should someone acquire the binary of this application without any
   supporting documentation to describe missing required files.
 
 ## DownloadRouterConfig.py 2.15 (2013-07-10) ##
