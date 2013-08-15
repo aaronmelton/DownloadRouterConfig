@@ -67,7 +67,7 @@ def fileExist(fileName):
 # Determine OS in use and clear screen of previous output
 system('cls' if name=='nt' else 'clear')
 
-print "Download Router Configuration v2.1.17"
+print "Download Router Configuration v2.1.18"
 print "-------------------------------------"
 print
 
