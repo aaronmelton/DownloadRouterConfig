@@ -11,4 +11,4 @@ Personally, I use the Pyinstaller module, [http://www.pyinstaller.org/](http://w
 to compile everything into a single binary to execute from the Windows
 command-line:
 
-    python pyinstaller.py DownloadRouterConfig.py --onefile
+    python C:\path\to\pyinstaller.py DownloadRouterConfig.py --onefile

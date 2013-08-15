@@ -1,3 +1,9 @@
+# DownloadRouterConfig.py #
+---
+
+## DownloadRouterConfig.py v2.1.18 (2013-08-15) ##
+* Cleaned up module importing
+
 ## DownloadRouterConfig.py v2.1.17 (2013-07-29) ##
 * Updating project to use Semantic Versioning: http://semver.org/
   Previous project versions were described using a MAJOR.PATCH increment
