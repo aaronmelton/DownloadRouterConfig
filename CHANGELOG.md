@@ -1,6 +1,22 @@
 # DownloadRouterConfig.py #
 ---
 
+## DownloadRouterConfig.py v2.2.1 (2013-08-29) ##
+* Corrected minor issue with Queue() function in which the verbose and 
+  max_threads settings were not being correctly read from configFile.
+* Improved log file output so that it no longer overwrites any existing
+  files (incrementing integer at end of filename).
+* Corrected 'mkdir' function to 'makedirs' so that directories will be
+  created recursively, if they do not exist.
+* Suppressed error SPAM from stdout by adding stderr=(open(os.devnull, 'w'))
+  to the Queue() function. (Errors are still written to the log.)
+  
+## DownloadRouterConfig.py v2.2.0 (2013-08-22) ##
+* Added configFile functionality to give application the ability to retrieve
+  user-specified settings from a config file.  Application use now extended
+  such that the list of routers, index and respective paths can be specified
+  in the file.  Application can also use configured username and password.
+
 ## DownloadRouterConfig.py v2.1.18 (2013-08-15) ##
 * Cleaned up module importing
 
