@@ -1,6 +1,14 @@
 # DownloadRouterConfig.py #
 ---
 
+## DownloadRouterConfig.py v2.2.2 (2013-09-09) ##
+* Corrected makedirs() functionality: Directories with a trailing backslash
+  in the config file were not being created thereby causing the application
+  to fail.
+* Moved logFileDirectory & backupDirectory makedirs() function such that the
+  directory would only be created if/when the parent function was called
+  instead of creating both directories whenever the application executed.
+
 ## DownloadRouterConfig.py v2.2.1 (2013-08-29) ##
 * Corrected minor issue with Queue() function in which the verbose and 
   max_threads settings were not being correctly read from configFile.

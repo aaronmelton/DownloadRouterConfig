@@ -1,1 +1,0 @@
-Download Router Configuration v2.17-----------------------------------Please enter your user name [aaron]: aaronPlease enter your password:10.10.10.11 succeeded.One action done (succeeded)C:\Users\aaron\Documents\GitHub\DownloadRouterConfig\example>

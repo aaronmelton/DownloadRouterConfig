@@ -48,10 +48,10 @@ class Application:
 # details across all my applications.  Also used to display information when
 # application is executed with "--help" argument.
 	author = "Aaron Melton <aaron@aaronmelton.com>"
-	date = "(2013-08-29)"
+	date = "(2013-09-09)"
 	description = "Downloads the running-config of a Cisco router."
 	name = "DownloadRouterConfig.py"
-	version = "v2.2.1"
+	version = "v2.2.2"
 	url = "https://github.com/aaronmelton/DownloadRouterConfig"
 
 
@@ -61,6 +61,10 @@ logger = Logger()	# Log stuff
 def downloadRouterConfig(job, host, socket):
 # This function logs into each of the hosts in the routerFile and writes the 
 # contents of running-config to an outputFile.
+
+	# If backupDirectory does not exist, create it
+	if not path.exists(backupDirectory): makedirs(backupDirectory)
+
 	# Define output filename based on hostname and date
 	outputFilename = backupDirectory+host.get_name()+'_Config_'+date+'.txt'	
 
@@ -164,14 +168,11 @@ finally:
 
 	# If logFileDirectory does not contain trailing backslash, append one
 	if logFileDirectory != '':
-		if logFileDirectory[-1:] != "\\":
-			logFileDirectory = logFileDirectory+"\\"
-			if not path.exists(logFileDirectory): makedirs(logFileDirectory)
+		if logFileDirectory[-1:] != "\\": logFileDirectory = logFileDirectory+"\\"
+			
 	# If backupDirectory does not contain trailing backslash, append one
 	if backupDirectory != '':
-		if backupDirectory[-1:] != "\\":
-			backupDirectory = backupDirectory+"\\"
-			if not path.exists(backupDirectory): makedirs(backupDirectory)
+		if backupDirectory[-1:] != "\\": backupDirectory = backupDirectory+"\\"
 
 	# Error checking for verboseOutput & maxThreads
 	if int(verboseOutput) not in range(0,5):	verboseOutput = 1
@@ -198,13 +199,16 @@ finally:
 		
 		print
 		
-		# Verbose & # threads taken from configFile
+		# Verbose & # threads taken from configFile, redirect errors to null
 		queue = Queue(verbose=int(verboseOutput), max_threads=int(maxThreads), stderr=(open(os.devnull, 'w')))
 		queue.add_account(account)				# # Use supplied user credentials
 		queue.run(hosts, downloadRouterConfig)	# Create queue using provided hosts
 		queue.shutdown()						# End all running threads and close queue
 	
 		print status(logger)	# Print current % status of operation to screen
+
+		# If logFileDirectory does not exist, create it.
+		if not path.exists(logFileDirectory): makedirs(logFileDirectory)
 
 		# Define log filename based on date
 		logFilename = logFileDirectory+'BackupStatus_'+date+'.log'
