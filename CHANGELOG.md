@@ -1,6 +1,15 @@
 # DownloadRouterConfig.py #
 ---
 
+## DownloadRouterConfig.py v2.2.3 (2014-03-17) ##
+* Replaced tab with four spaces.
+* Corrected variables in code accidentally copied from another application.
+* Changed 'BackupStatus' log filename to 'DownloadRouterConfig'.
+* Replaced ' with " to be consistent throughout the file.
+* Updated `README.md` to match newest application design.
+* Corrected problem where application would fail if logFileDirectory or 
+  backupFileDirectory in settings.cfg was blank.
+
 ## DownloadRouterConfig.py v2.2.2 (2013-09-09) ##
 * Corrected makedirs() functionality: Directories with a trailing backslash
   in the config file were not being created thereby causing the application
@@ -8,6 +17,7 @@
 * Moved logFileDirectory & backupDirectory makedirs() function such that the
   directory would only be created if/when the parent function was called
   instead of creating both directories whenever the application executed.
+* Removing example file since it's no longer up-to-date.
 
 ## DownloadRouterConfig.py v2.2.1 (2013-08-29) ##
 * Corrected minor issue with Queue() function in which the verbose and 
