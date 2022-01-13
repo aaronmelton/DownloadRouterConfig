@@ -1,5 +1,9 @@
-# DownloadRouterConfig.py #
----
+# CHANGELOG
+
+## [3.0.0] - 2022-01-11
+### Changed
+- Porting code from Python2 to Python3!
+
 
 ## DownloadRouterConfig.py v2.2.3 (2014-03-17) ##
 * Replaced tab with four spaces.
