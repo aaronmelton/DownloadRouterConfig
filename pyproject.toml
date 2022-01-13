@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "download_router_config"
+version = "3.0.0"
+description = "A Python script to capture the running-config of Cisco Routers and Switches."
+authors = ["Aaron Melton <aaron@aaronmelton.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+black = "^21.12b0"
+pylint = "^2.12.2"
+pydocstyle = "^6.1.1"
+bandit = "^1.7.1"
+flake8 = "^4.0.1"
+napalm = "^3.3.1"
+progress = "^1.6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
