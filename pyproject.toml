@@ -11,11 +11,52 @@ pylint = "^2.12.2"
 pydocstyle = "^6.1.1"
 bandit = "^1.7.1"
 flake8 = "^4.0.1"
-napalm = "^3.3.1"
+isort = "^5.10.1"
 progress = "^1.6"
+napalm = "^3.3.1"
 
 [tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pylint.messages_control]
+# line-too-long, bad-continuation: Allowing Black to enforce line length.
+# logging-fstring-interpolation: Using f-strings in logging so I can log output
+# to the console AND the log file simultaneously.
+disable = '''
+    line-too-long,
+    bad-continuation,
+    logging-fstring-interpolation,
+    '''
+
+[tool.bandit]
+skips = []
+exclude_dirs = ["./tests/"]
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+        /(
+          \.git
+        | \.tox
+        | \.venv
+        | env/
+        | _build
+        | build
+        | dist
+        )/
+    '''
+
+[tool.pydocstyle]
+convention = '''google'''
+inherit = false
+match = '''(?!__init__).*\.py'''
+match-dir = '''(?!tests)[^\.].*'''
+
+[tool.pylint.miscellaneous]
+notes = ''',
+	TODO.md,
+    '''

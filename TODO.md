@@ -13,3 +13,9 @@ download_router_config/download_router_config.py:16:0: R0915: Too many statement
 
 ------------------------------------------------------------------
 Your code has been rated at 8.08/10 (previous run: 8.08/10, +0.00)
+
+
+
+# Validations
+1. Validate backup_to directory exists; What to do if it doesn't?
+2. Add argument to specify where to drop the summary log?

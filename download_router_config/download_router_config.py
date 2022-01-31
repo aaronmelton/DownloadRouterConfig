@@ -1,16 +1,16 @@
 """Download Router Config."""
 
-import argparse
-import datetime
-import getpass
 import logging
 import os
 import sys
-import time
-import napalm
-from progress.bar import Bar
+from argparse import ArgumentParser, RawDescriptionHelpFormatter
+from datetime import date, datetime
+from getpass import getpass
+from time import time
 
-import config
+from config import app_dict, log_dict
+from napalm import get_network_driver
+from progress.bar import Bar
 
 
 def main():
@@ -24,12 +24,11 @@ def main():
     -------
     None
     """
-    start_time = time.time()
+    start_time = time()
 
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        # pylint: disable=line-too-long
-        description=f"""{config.app_dict["name"]} {config.app_dict["version"]} {config.app_dict["date"]}\n--\nDescription: {config.app_dict["desc"]}\nAuthor:      {config.app_dict["author"]}\nURL:         {config.app_dict["url"]}""",
+    parser = ArgumentParser(
+        formatter_class=RawDescriptionHelpFormatter,
+        description=f"""{app_dict["name"]} {app_dict["version"]} {app_dict["date"]}\n--\nDescription: {app_dict["desc"]}\nAuthor:      {app_dict["author"]}\nURL:         {app_dict["url"]}""",
     )
     parser.add_argument(
         "--device_list",
@@ -45,13 +44,12 @@ def main():
 
     # Setup Logging Functionality
     logging.basicConfig(
-        # pylint: disable=line-too-long
-        filename=f"""{config.log_dict["path"]}{config.log_dict["prefix"]}{datetime.date.today().strftime("%Y%m%d")}.log""",
+        filename=f"""{log_dict["path"]}{log_dict["prefix"]}{date.today().strftime("%Y%m%d")}.log""",
         filemode="a",
         format="{asctime}  Log Level: {levelname:8}  Line: {lineno:4}  Function: {funcName:21}  Msg: {message}",
         style="{",
         datefmt="%Y-%m-%dT%H:%M:%S",
-        level=config.log_dict["level"],
+        level=log_dict["level"],
     )
 
     logger.debug("")
@@ -59,17 +57,17 @@ def main():
     logger.debug("")
     logger.debug("START START START")
 
-    # pylint: disable=line-too-long
-    script_header = f"""{config.app_dict["title"]} {config.app_dict["version"]} ({config.app_dict["date"]})"""
+    script_header = f"""{app_dict["title"]} {app_dict["version"]} ({app_dict["date"]})"""
     logger.info(script_header)
     logger.info("=" * len(script_header))
 
     if vars(args)["backup_to"]:
+        ###
+        # NEED TO VALIDATE DIRECTORY EXISTS
+        ###
         backup_to = vars(args)["backup_to"]
     else:
-        logger.warning(
-            "--> Backup directory not provided; Assuming current working directory."
-        )
+        logger.warning("--> Backup directory not provided; Assuming current working directory.")
         backup_to = os.getcwd()
 
     logger.info(f"""--> Attempting to open file '{vars(args)["device_list"]}'...""")
@@ -77,21 +75,18 @@ def main():
         logger.info(f"""--> Reading contents of '{vars(args)["device_list"]}'...""")
         device_list = input_file.read().splitlines()
 
-    logger.info(
-        f"""--> Read [{len(device_list)}] devices from '{vars(args)["device_list"]}'."""
-    )
+    logger.info(f"""--> Read [{len(device_list)}] devices from '{vars(args)["device_list"]}'.""")
     logger.info("")
 
     get_username = input("Username: ")
-    get_password = getpass.getpass("Password: ")
+    get_password = getpass("Password: ")
     logger.info("")
     success_count = 0
     fail_count = 0
 
-    with open("something.log", "w", encoding="utf-8") as something:
-        for device in Bar("Working...", suffix="%(percent).f%% - %(eta)ds").iter(
-            device_list
-        ):
+    summary_filename = f"""download_router_config_summary_{datetime.now().strftime("%Y%m%dT%H%M%S")}.csv"""
+    with open(f"{backup_to}{summary_filename}", "w", encoding="utf-8") as summary_csv:
+        for device in Bar("Working...", suffix="%(percent).f%% - %(eta)ds").iter(device_list):
             device_dict = {
                 "hostname": device,
                 "username": get_username,
@@ -99,20 +94,17 @@ def main():
             }
             connect_device = None
             try:
-                driver = napalm.get_network_driver("ios")
-                connect_device = driver(**device_dict)
+                napalm_driver = get_network_driver("ios")
+                connect_device = napalm_driver(**device_dict)
                 connect_device.open()
-                something.write(f"{device},success\n")
-                # pylint: disable=line-too-long
-                device_filename = f"""{device}_config_{datetime.datetime.now().strftime("%Y%m%dT%H%M%S")}.log"""
-                with open(
-                    f"{backup_to}{device_filename}", "w", encoding="utf-8"
-                ) as config_backup:
+                summary_csv.write(f"{device},success\n")
+                device_filename = f"""{device}_config_{datetime.now().strftime("%Y%m%dT%H%M%S")}.log"""
+                with open(f"{backup_to}{device_filename}", "w", encoding="utf-8") as config_backup:
                     config_backup.write(connect_device.get_config()["running"])
                 connect_device.close()
                 success_count += 1
             except Exception:
-                something.write(f"{device},fail\n")
+                summary_csv.write(f"{device},fail\n")
                 fail_count += 1
 
     logger.info("")
@@ -120,7 +112,7 @@ def main():
     logger.info(f"""Device backup successful: {success_count}""")
     logger.info(f"""Device backup failed:     {fail_count}""")
     logger.info("")
-    logger.info(f"Total Execution Time: {(time.time() - start_time):.2f} seconds")
+    logger.info(f"Total Execution Time: {(time() - start_time):.2f} seconds")
     logger.debug("STOP STOP STOP")
     return 0
 

@@ -1,9 +1,24 @@
 # CHANGELOG
 
+## [3.0.1] - 2022-01-14
+### Added
+- pyproject.toml: Moving in bandit, black, pytdocstyle, pylint configuration
+  options.
+- pyproject.toml: Added pytest.
+- Added isort package.
+### Changed
+- README.md: Cleaning up text.
+- Removed pylint comments from code.
+- Gave summary log file an appropriate variable name, like 'summary_csv' and not
+  'something'.
+### Removed
+- .bandit.yml; Moved into pyproject.toml
+- .pydocstyle.ini; Moved into pyproject.toml
+- .yamllint; Not using any YAML in this project.
+
 ## [3.0.0] - 2022-01-11
 ### Changed
 - Porting code from Python2 to Python3!
-
 
 ## DownloadRouterConfig.py v2.2.3 (2014-03-17) ##
 * Replaced tab with four spaces.
