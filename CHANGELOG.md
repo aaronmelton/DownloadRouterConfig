@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [3.0.2] - 2022-02-07
+### Added
+- Dockerfile
+### Changed
+- README.md: Added instructions for using the script with Docker.
+- download_router_config.py: Removed superfluous logging lines.
+- pyproject.toml: Moved development-only packages into [tool.poetry.dev-dependencies]
+- TODO.md: Dealt with Pylint issues.
+### Removed
+- __init__.py: Not necessary.
+
 ## [3.0.1] - 2022-01-14
 ### Added
 - pyproject.toml: Moving in bandit, black, pytdocstyle, pylint configuration

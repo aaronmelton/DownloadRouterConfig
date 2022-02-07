@@ -1,21 +1,22 @@
 [tool.poetry]
 name = "download_router_config"
-version = "3.0.0"
+version = "3.0.2"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-black = "^21.12b0"
-pylint = "^2.12.2"
-pydocstyle = "^6.1.1"
-bandit = "^1.7.1"
-flake8 = "^4.0.1"
-isort = "^5.10.1"
 progress = "^1.6"
 napalm = "^3.3.1"
 
 [tool.poetry.dev-dependencies]
+bandit = "^1.7.2"
+black = "^22.1.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pydocstyle = "^6.1.1"
+pylint = "^2.12.2"
+pytest = "^7.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -25,10 +26,18 @@ build-backend = "poetry.core.masonry.api"
 # line-too-long, bad-continuation: Allowing Black to enforce line length.
 # logging-fstring-interpolation: Using f-strings in logging so I can log output
 # to the console AND the log file simultaneously.
+#
+# broad-except: Actual exception doesn't matter to execution of script.
+# line-too-long: I dont care about long lines
+# logging-fstring-interpolation: Logging to console and file simultaneously
+# too-many-locals: 19/15 local vars; meh
+# too-many-statements: 51/50 statements; meh
 disable = '''
+    broad-except,
     line-too-long,
-    bad-continuation,
     logging-fstring-interpolation,
+    too-many-locals,
+    too-many-statements
     '''
 
 [tool.bandit]

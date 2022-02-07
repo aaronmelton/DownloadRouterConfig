@@ -52,9 +52,6 @@ def main():
         level=log_dict["level"],
     )
 
-    logger.debug("")
-    logger.debug("")
-    logger.debug("")
     logger.debug("START START START")
 
     script_header = f"""{app_dict["title"]} {app_dict["version"]} ({app_dict["date"]})"""

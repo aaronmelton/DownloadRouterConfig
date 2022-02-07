@@ -29,11 +29,26 @@ In conjunction with updating this code to work with Python3, I've also selected 
 
 ### Instructions For Use
 
+* Clone this repository.
+* Follow instructions for Python or Docker (below).
+
+#### Python Commands
+
 `python download_router_config.py --help`  for help.
 
 Use `--device_list <filename>` to specify input file.
    
-Use `--backup_to <path>` to specifiy where to save config files.
+Use `--backup_to <path>` to specify where to save config files.
+
+#### Docker Commands
+
+* To pull/build the Docker image:
+`docker build -t download_router_config .`
+
+* To run the script:
+`docker run -it -e LOG_LEVEL=DEBUG -e LOG_PATH=/tmp/ --rm download_router_config:latest --device_list switches.txt --backup_to /tmp/`
+
+Replace the values for LOG_LEVEL, LOG_PATH and CLI arguments (device_list, backup_to) to suit your needs.
 
 ## Authors
 * **Aaron Melton** - *Author* - Aaron Melton <aaron@aaronmelton.com>
