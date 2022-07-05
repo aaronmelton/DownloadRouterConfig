@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## [3.0.3] - 2022-07-05
+### Changed
+- Improving functionality that times app from using time.time() to 
+  time.perf_counter().
+- Updating cffi (1.15.0 -> 1.15.1)
+- Updating bcrypt (3.2.0 -> 3.2.2)
+- Updating cryptography (36.0.1 -> 37.0.4)
+- Updating lxml (4.8.0 -> 4.9.1)
+- Updating markupsafe (2.1.0 -> 2.1.1)
+- Updating paramiko (2.9.2 -> 2.11.0)
+- Updating certifi (2021.10.8 -> 2022.6.15)
+- Updating charset-normalizer (2.0.12 -> 2.1.0)
+- Updating dnspython (2.2.0 -> 2.2.1)
+- Updating jinja2 (3.0.3 -> 3.1.2)
+- Updating ncclient (0.6.9 -> 0.6.13)
+- Updating pbr (5.8.1 -> 5.9.0)
+- Updating pyparsing (3.0.7 -> 3.0.9)
+- Updating urllib3 (1.26.8 -> 1.26.9)
+- Updating wrapt (1.13.3 -> 1.14.1)
+- Updating astroid (2.9.3 -> 2.11.6)
+- Updating ciscoconfparse (1.6.36 -> 1.6.40)
+- Updating click (8.0.4 -> 8.1.3)
+- Installing dill (0.3.5.1)
+- Updating junos-eznc (2.6.3 -> 2.6.4)
+- Updating platformdirs (2.5.1 -> 2.5.2)
+- Updating requests (2.27.1 -> 2.28.1)
+- Installing tomlkit (0.11.0)
+- Updating bandit (1.7.3 -> 1.7.4)
+- Updating black (22.1.0 -> 22.6.0)
+- Updating napalm (3.3.1 -> 3.4.1)
+- Updating pylint (2.12.2 -> 2.14.4)
+- Updating pytest (7.0.1 -> 7.1.2)
+
+
 ## [3.0.2] - 2022-02-07
 ### Added
 - Dockerfile

@@ -3,10 +3,10 @@
 import logging
 import os
 import sys
+import time
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 from datetime import date, datetime
 from getpass import getpass
-from time import time
 
 from config import app_dict, log_dict
 from napalm import get_network_driver
@@ -24,7 +24,7 @@ def main():
     -------
     None
     """
-    start_time = time()
+    start_time = time.perf_counter()
 
     parser = ArgumentParser(
         formatter_class=RawDescriptionHelpFormatter,
@@ -109,7 +109,7 @@ def main():
     logger.info(f"""Device backup successful: {success_count}""")
     logger.info(f"""Device backup failed:     {fail_count}""")
     logger.info("")
-    logger.info(f"Total Execution Time: {(time() - start_time):.2f} seconds")
+    logger.info(f"Total Execution Time: {(time.perf_counter() - start_time):.2f} seconds")
     logger.debug("STOP STOP STOP")
     return 0
 
