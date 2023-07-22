@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.1.0] - 2023-07-22
+### Changed
+- Simplified script by moving config.py into the script file as a dataclass.
+- Updating Python libraries.
+
+
 ## [3.0.3] - 2022-07-05
 ### Changed
 - Improving functionality that times app from using time.time() to 

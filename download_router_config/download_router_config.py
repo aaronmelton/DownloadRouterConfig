@@ -5,15 +5,42 @@ import os
 import sys
 import time
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
+from dataclasses import dataclass
 from datetime import date, datetime
 from getpass import getpass
 
-from config import app_dict, log_dict
 from napalm import get_network_driver
 from progress.bar import Bar
 
 
-def main():
+@dataclass
+class Config:
+    """Class for Application variables."""
+
+    def __init__(self):
+        """Application Variables."""
+        self.app_dict = {
+            "author": "Aaron Melton <aaron@aaronmelton.com>",
+            "date": "2023-07-22",
+            "desc": "A Python script to capture the running-config of Cisco routers and switches.",
+            "name": "download_router_config.py",
+            "title": "Download Router Config",
+            "url": "https://github.com/aaronmelton/DownloadRouterConfig",
+            "version": "3.1.0",
+        }
+
+        # Logging Variables
+        self.log_dict = {
+            "level": os.environ.get("LOG_LEVEL", None),
+            "path": os.environ.get("LOG_PATH", None),
+            "prefix": "download_router_config_",
+        }
+
+
+config = Config()
+
+
+def main():  # pylint: disable=broad-except,too-many-locals,too-many-statements
     """Main Function.
 
     Args
@@ -28,7 +55,7 @@ def main():
 
     parser = ArgumentParser(
         formatter_class=RawDescriptionHelpFormatter,
-        description=f"""{app_dict["name"]} {app_dict["version"]} {app_dict["date"]}\n--\nDescription: {app_dict["desc"]}\nAuthor:      {app_dict["author"]}\nURL:         {app_dict["url"]}""",
+        description=f"""{config.app_dict["name"]} {config.app_dict["version"]} {config.app_dict["date"]}\n--\nDescription: {config.app_dict["desc"]}\nAuthor:      {config.app_dict["author"]}\nURL:         {config.app_dict["url"]}""",
     )
     parser.add_argument(
         "--device_list",
@@ -44,17 +71,17 @@ def main():
 
     # Setup Logging Functionality
     logging.basicConfig(
-        filename=f"""{log_dict["path"]}{log_dict["prefix"]}{date.today().strftime("%Y%m%d")}.log""",
+        filename=f"""{config.log_dict["path"]}{config.log_dict["prefix"]}{date.today().strftime("%Y%m%d")}.log""",
         filemode="a",
         format="{asctime}  Log Level: {levelname:8}  Line: {lineno:4}  Function: {funcName:21}  Msg: {message}",
         style="{",
         datefmt="%Y-%m-%dT%H:%M:%S",
-        level=log_dict["level"],
+        level=config.log_dict["level"],
     )
 
     logger.debug("START START START")
 
-    script_header = f"""{app_dict["title"]} {app_dict["version"]} ({app_dict["date"]})"""
+    script_header = f"""{config.app_dict["title"]} {config.app_dict["version"]} ({config.app_dict["date"]})"""
     logger.info(script_header)
     logger.info("=" * len(script_header))
 
@@ -100,7 +127,7 @@ def main():
                     config_backup.write(connect_device.get_config()["running"])
                 connect_device.close()
                 success_count += 1
-            except Exception:
+            except Exception:  # pylint: disable=broad-except
                 summary_csv.write(f"{device},fail\n")
                 fail_count += 1
 
