@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "download_router_config"
-version = "3.0.2"
+version = "3.1.0"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 
@@ -10,35 +10,21 @@ progress = "^1.6"
 napalm = "^3.3.1"
 
 [tool.poetry.dev-dependencies]
-bandit = "^1.7.2"
+bandit = "^1.7.4"
 black = "^22.1.0"
+coverage = "^6.3.2"
 flake8 = "^4.0.1"
 isort = "^5.10.1"
 pydocstyle = "^6.1.1"
 pylint = "^2.12.2"
-pytest = "^7.0.0"
+pytest = "^7.1.1"
+pytest-env = "^0.6.2"
+toml = "^0.10.2"
+Flake8-pyproject = "^0.9.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.pylint.messages_control]
-# line-too-long, bad-continuation: Allowing Black to enforce line length.
-# logging-fstring-interpolation: Using f-strings in logging so I can log output
-# to the console AND the log file simultaneously.
-#
-# broad-except: Actual exception doesn't matter to execution of script.
-# line-too-long: I dont care about long lines
-# logging-fstring-interpolation: Logging to console and file simultaneously
-# too-many-locals: 19/15 local vars; meh
-# too-many-statements: 51/50 statements; meh
-disable = '''
-    broad-except,
-    line-too-long,
-    logging-fstring-interpolation,
-    too-many-locals,
-    too-many-statements
-    '''
 
 [tool.bandit]
 skips = []
@@ -59,13 +45,27 @@ exclude = '''
         )/
     '''
 
+[tool.flake8]
+ignore = ['E501', 'W503']
+
 [tool.pydocstyle]
 convention = '''google'''
 inherit = false
 match = '''(?!__init__).*\.py'''
 match-dir = '''(?!tests)[^\.].*'''
 
+[tool.pylint.messages_control]
+disable = '''
+    line-too-long,
+    logging-fstring-interpolation,
+    '''
+
 [tool.pylint.miscellaneous]
 notes = ''',
-	TODO.md,
+    TODO.md,
     '''
+
+[tool.pytest.ini_options]
+pythonpath = [".", "download_router_config"]
+env = ["LOG_LEVEL = DEBUGGY",
+       "LOG_PATH = /Temp/"]
