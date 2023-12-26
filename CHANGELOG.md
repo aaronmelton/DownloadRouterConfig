@@ -1,5 +1,55 @@
 # CHANGELOG
 
+## [3.1.1] - 2023-12-26
+### Changed
+- Removing anyio (3.7.1)
+- Removing deprecat (2.1.1)
+- Removing h11 (0.14.0)
+- Removing httpcore (0.17.3)
+- Removing sniffio (1.3.0)
+- Updating cffi (1.15.1 -> 1.16.0)
+- Updating bcrypt (4.0.1 -> 4.1.2)
+- Updating cryptography (41.0.2 -> 41.0.7) (Fixes #6)
+- Updating lxml (4.9.3 -> 4.9.4)
+- Updating paramiko (3.2.0 -> 3.4.0)
+- Updating setuptools (68.0.0 -> 69.0.3)
+- Updating smmap (5.0.0 -> 5.0.1)
+- Updating wrapt (1.15.0 -> 1.16.0)
+- Updating certifi (2023.7.22 -> 2023.11.17) (Fixes #5)
+- Updating charset-normalizer (3.2.0 -> 3.3.2)
+- Installing deprecated (1.2.14)
+- Updating dnspython (2.4.0 -> 2.4.2)
+- Updating gitdb (4.0.10 -> 4.0.11)
+- Installing hier-config (2.2.2)
+- Updating idna (3.4 -> 3.6)
+- Updating lazy-object-proxy (1.9.0 -> 1.10.0)
+- Updating loguru (0.6.0 -> 0.7.2)
+- Updating netaddr (0.8.0 -> 0.9.0)
+- Updating ntc-templates (3.5.0 -> 4.1.0)
+- Updating packaging (23.1 -> 23.2)
+- Updating pbr (5.11.1 -> 6.0.0)
+- Updating pluggy (1.2.0 -> 1.3.0)
+- Updating pygments (2.15.1 -> 2.17.2)
+- Updating pyparsing (3.1.0 -> 3.1.1)
+- Updating tenacity (8.2.2 -> 8.2.3)
+- Updating urllib3 (2.0.4 -> 2.1.0)
+- Updating yamlordereddictloader (0.4.0 -> 0.4.2)
+- Updating astroid (2.15.6 -> 2.15.8)
+- Updating ciscoconfparse (1.7.24 -> 1.9.41)
+- Updating click (8.1.6 -> 8.1.7)
+- Updating gitpython (3.1.32 -> 3.1.40)
+- Updating isort (5.12.0 -> 5.13.2)
+- Updating junos-eznc (2.6.7 -> 2.6.8)
+- Updating pathspec (0.11.1 -> 0.12.1)
+- Updating platformdirs (3.9.1 -> 4.1.0)
+- Updating pytest (7.4.0 -> 7.4.3)
+- Updating rich (13.4.2 -> 13.7.0)
+- Updating tomlkit (0.11.8 -> 0.12.3)
+- Updating bandit (1.7.5 -> 1.7.6)
+- Updating pylint (2.17.4 -> 2.17.7)
+
+
+
 ## [3.1.0] - 2023-07-22
 ### Changed
 - Simplified script by moving config.py into the script file as a dataclass.
