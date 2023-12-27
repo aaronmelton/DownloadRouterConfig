@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [3.1.3] - 2023-12-27
+### Added
+- .dockerignore: We should probably have one of these if we're using Docker.
+### Changed
+- Dockerfile: Bumped Python version from 3.10 to 3.11.
+### Fixed
+- README.md: Fixed instructions for using a Docker image.  (Lacked drive
+  mapping between local and container directories.)
+
+
 ## [3.1.2] - 2023-12-27
 ### Changed
 - README.md: Corrected link to NAPALM; Minimal changes to other text.
