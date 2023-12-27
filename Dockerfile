@@ -1,4 +1,4 @@
-ARG PYTHON_VER=3.10
+ARG PYTHON_VER=3.11
 ARG REPO_NAME=download_router_config
 
 ##################

@@ -26,7 +26,7 @@ class Config:
             "name": "download_router_config.py",
             "title": "Download Router Config",
             "url": "https://github.com/aaronmelton/DownloadRouterConfig",
-            "version": "3.1.2",
+            "version": "3.1.3",
         }
 
         # Logging Variables
@@ -91,8 +91,8 @@ def main():  # pylint: disable=broad-except,too-many-locals,too-many-statements
         ###
         backup_to = vars(args)["backup_to"]
     else:
-        logger.warning("--> Backup directory not provided; Assuming current working directory.")
-        backup_to = os.getcwd()
+        backup_to = f"{os.getcwd()}/"
+        logger.warning(f"--> Backup directory not provided; Backing up to {backup_to}...")
 
     logger.info(f"""--> Attempting to open file '{vars(args)["device_list"]}'...""")
     with open(vars(args)["device_list"], "r", encoding="utf-8") as input_file:

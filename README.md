@@ -15,7 +15,7 @@ In conjunction with updating this code to work with Python3, I've selected [NAPA
 1. This application is hard-coded to use the SSH2 protocol; If SSH v2 is not enabled on your router(s), you will need to add `ip ssh version 2` to your Cisco router(s) configuration and any associated access-list changes.
 2. A valid username/password.
 3. A text file containing hostnames or IP Addresses of your routers/switches, one entry per line.
-4. Environment variables for logging (LOG_LEVEL, LOG_PATH, LOG_PREFIX) OR you can hard-code the log_dict{} variables in the configuration section.
+4. Environment variables for logging (LOG_LEVEL, LOG_PATH) OR you can hard-code the log_dict{} variables in the configuration section.
 
 #### Assumptions
 1. This application was written for use on Cisco IOS devices and cannot be guaranteed to work on other makes/model routers.
@@ -46,7 +46,7 @@ Use `--backup_to <path>` to specify where to save config files.
 `docker build -t download_router_config .`
 
 * To run the script:
-`docker run -it -e LOG_LEVEL=DEBUG -e LOG_PATH=/tmp/ --rm download_router_config:latest --device_list switches.txt --backup_to /tmp/`
+`docker run -v `local_directory`:`container_directory` -it -e LOG_LEVEL=DEBUG -e LOG_PATH=/tmp/ --rm download_router_config:latest --device_list /`container_directory`/switches.txt --backup_to /`container_directory`/`
 
 Replace the values for LOG_LEVEL, LOG_PATH and CLI arguments (device_list, backup_to) to suit your needs.
 
