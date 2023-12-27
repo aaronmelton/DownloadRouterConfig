@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "download_router_config"
-version = "3.1.0"
+version = "3.1.2"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 progress = "^1.6"
-napalm = "^3.3.1"
+napalm = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
