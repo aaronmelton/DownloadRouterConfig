@@ -5,17 +5,17 @@ A Python script to capture the running-config of Cisco Routers and Switches.
 ## Getting Started
 
 ### About This Code
-This script was originally written in Python2 and relied on [Exscript](https://github.com/knipknap/exscript/) to handle all the 'heavy lifting' of communicating with the router.
+This script was originally written in Python2 and relied on [Exscript](https://github.com/knipknap/exscript/) to handle the 'heavy lifting' of communicating with the router.
 
 However, it appears that Exscript went the way of Python2 and is no longer supported.
 
-In conjunction with updating this code to work with Python3, I've also selected [NAPALM](https://github.com/ktbyers/napalm) to replace the functionality that Exscript once provided.
+In conjunction with updating this code to work with Python3, I've selected [NAPALM](https://github.com/napalm-automation/napalm) to replace the functionality that Exscript once provided.
 
 #### Requirements
 1. This application is hard-coded to use the SSH2 protocol; If SSH v2 is not enabled on your router(s), you will need to add `ip ssh version 2` to your Cisco router(s) configuration and any associated access-list changes.
 2. A valid username/password.
 3. A text file containing hostnames or IP Addresses of your routers/switches, one entry per line.
-4. Environment variables for logging (LOG_LEVEL, LOG_PATH, LOG_PREFIX) OR you can hard-code the log_dict{} variables in config.py.
+4. Environment variables for logging (LOG_LEVEL, LOG_PATH, LOG_PREFIX) OR you can hard-code the log_dict{} variables in the configuration section.
 
 #### Assumptions
 1. This application was written for use on Cisco IOS devices and cannot be guaranteed to work on other makes/model routers.

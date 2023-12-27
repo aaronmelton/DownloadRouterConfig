@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## [3.1.2] - 2023-12-27
+### Changed
+- README.md: Corrected link to NAPALM; Minimal changes to other text.
+- pyproject.toml: Bumped python to 3.11, napalm to 4.1.0
+- Removing ciscoconfparse (1.9.41)
+- Removing deprecated (1.2.14)
+- Removing dnspython (2.4.2)
+- Removing hier-config (2.2.2)
+- Removing loguru (0.7.2)
+- Removing passlib (1.7.4)
+- Removing tenacity (8.2.3)
+- Installing ttp (0.9.5)
+- Updating netmiko (3.4.0 -> 4.3.0): Downloading... 80%
+- Installing netutils (1.6.0): Installing...
+- Installing ttp-templates (0.3.5)
+- Updating netmiko (3.4.0 -> 4.3.0)
+- Installing netutils (1.6.0)
+- Installing ttp-templates (0.3.5)
+- Installing typing-extensions (4.9.0)
+- Updating napalm (3.4.1 -> 4.1.0)
+
+
 ## [3.1.1] - 2023-12-26
 ### Changed
 - Removing anyio (3.7.1)
