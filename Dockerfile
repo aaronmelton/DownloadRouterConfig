@@ -1,5 +1,5 @@
 ARG PYTHON_VER=3.11
-ARG REPO_NAME=download_router_config
+ARG REPO_NAME=download-router-config
 
 ##################
 ### BASE IMAGE ###
@@ -12,12 +12,12 @@ LABEL name=${REPO_NAME} prune=true
 
 WORKDIR /app
 
-RUN pip install poetry
+RUN pip install --no-cache-dir poetry
 RUN poetry config virtualenvs.create false
 
 COPY pyproject.toml .
 
-RUN poetry install --no-dev
+RUN poetry install --only main
 
 ##################
 ### TEST IMAGE ###
@@ -41,7 +41,7 @@ RUN echo '-->Running Flake8p' && \
     echo '-->Running Black' && \
     black --config pyproject.toml --check --diff . && \
     echo '-->Running isort' && \
-    find . -name '*.py' | xargs isort && \
+    find . -path ./tests -prune -name '*.py' | xargs isort && \
     echo '-->Running Pylint' && \
     find . -name '*.py' | xargs pylint --rcfile=pyproject.toml && \
     echo '-->Running pydocstyle' && \

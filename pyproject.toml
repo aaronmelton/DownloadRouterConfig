@@ -1,24 +1,25 @@
 [tool.poetry]
 name = "download_router_config"
-version = "3.1.3"
+version = "4.0.0"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-progress = "^1.6"
+aaron-common-libs = {git = "https://github.com/aaronmelton/aaron-common-libs.git"}
 napalm = "^4.1.0"
+rich = "^13.7.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
-black = "^22.1.0"
-coverage = "^6.3.2"
+black = "^23.7.0"
+coverage = "^7.2.7"
 flake8 = "^4.0.1"
 isort = "^5.10.1"
 pydocstyle = "^6.1.1"
 pylint = "^2.12.2"
 pytest = "^7.1.1"
-pytest-env = "^0.6.2"
+pytest-env = "^1.0.1"
 toml = "^0.10.2"
 Flake8-pyproject = "^0.9.0"
 
@@ -27,7 +28,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.bandit]
-skips = []
+skips = ["B108"]
 exclude_dirs = ["./tests/"]
 
 [tool.black]
@@ -48,16 +49,21 @@ exclude = '''
 [tool.flake8]
 ignore = ['E501', 'W503']
 
+[tool.isort]
+profile = "black"
+
 [tool.pydocstyle]
 convention = '''google'''
 inherit = false
 match = '''(?!__init__).*\.py'''
 match-dir = '''(?!tests)[^\.].*'''
 
+[tool.pylint.master]
+init-hook = 'import os, sys; sys.path.append(os.path.dirname("download_router_config/"));'
+
 [tool.pylint.messages_control]
 disable = '''
     line-too-long,
-    logging-fstring-interpolation,
     '''
 
 [tool.pylint.miscellaneous]
@@ -66,6 +72,6 @@ notes = ''',
     '''
 
 [tool.pytest.ini_options]
-pythonpath = [".", "download_router_config"]
-env = ["LOG_LEVEL = DEBUGGY",
-       "LOG_PATH = /Temp/"]
+pythonpath = [".", "download_router_config/"]
+env = ["LOG_LEVEL = DEBUG",
+    "LOG_PATH = /tmp/"]

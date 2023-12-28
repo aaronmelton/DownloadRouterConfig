@@ -1,8 +1,10 @@
-# Project files
+# Project-specific files
 *.sublime-*
+.idea/*
+**/run*.sh
 
 # Byte-compiled / optimized / DLL files
-**/__pycache__/
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -11,19 +13,15 @@
 
 # Distribution / packaging
 .Python
-bin/
 build/
 develop-eggs/
 dist/
 downloads/
 eggs/
 .eggs/
-include/
 lib/
-lib64
 lib64/
 parts/
-pyvenv.cfg
 sdist/
 var/
 wheels/
@@ -143,3 +141,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Operating System Files
+.DS_Store
