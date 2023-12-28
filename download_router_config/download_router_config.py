@@ -1,149 +1,150 @@
-"""Download Router Config."""
+"""download-router-config."""
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 
-import logging
-import os
 import sys
-import time
-from argparse import ArgumentParser, RawDescriptionHelpFormatter
-from dataclasses import dataclass
-from datetime import date, datetime
-from getpass import getpass
+from datetime import datetime
+from os import getcwd
+from time import perf_counter
 
+from aaron_common_libs.common_funcs import argument, cli, subcommand
+from aaron_common_libs.logger.custom_logger import CustomLogger
+from config import Config
 from napalm import get_network_driver
-from progress.bar import Bar
+from napalm.base.exceptions import ConnectionException
+from rich.console import Console
+from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
+from rich.prompt import Prompt
 
-
-@dataclass
-class Config:
-    """Class for Application variables."""
-
-    def __init__(self):
-        """Application Variables."""
-        self.app_dict = {
-            "author": "Aaron Melton <aaron@aaronmelton.com>",
-            "date": "2023-12-27",
-            "desc": "A Python script to capture the running-config of Cisco routers and switches.",
-            "name": "download_router_config.py",
-            "title": "Download Router Config",
-            "url": "https://github.com/aaronmelton/DownloadRouterConfig",
-            "version": "3.1.3",
-        }
-
-        # Logging Variables
-        self.log_dict = {
-            "level": os.environ.get("LOG_LEVEL", None),
-            "path": os.environ.get("LOG_PATH", None),
-            "prefix": "download_router_config_",
-        }
-
-
+console = Console()
 config = Config()
+logging_handler = CustomLogger(log_dict=config.log_dict)
+logger = logging_handler.default
+logger_all = logging_handler.all
 
 
-def main():  # pylint: disable=broad-except,too-many-locals,too-many-statements
-    """Main Function.
+# Sub-Commands for Download operations
+@subcommand(
+    [
+        argument(
+            "--device_list",
+            help="Text file containing Cisco device Hostnames or IP Addresses.",
+            type=str,
+            nargs=1,
+            required=False,
+        ),
+        argument("--backup_to", help="Path to save config files to.", type=str, nargs=1, required=False),
+    ]
+)
+def download(args):
+    """Subcommand options for download operations."""
+    logger.debug("args==%s", vars(args))
+
+    console.rule(f"""{config.app_dict["title"]} {config.app_dict["version"]} ({config.app_dict["date"]})""")
+
+    if not args.backup_to:
+        backup_to = f"{getcwd()}/"
+    else:
+        backup_to = args.backup_to[0]
+        if backup_to[-1] != "/":
+            backup_to += "/"
+    if args.device_list and backup_to:
+        console.print(f"""[green]-->[/green] Attempting to open file '{args.device_list[0]}'...""")
+
+        with open(args.device_list[0], "r", encoding="utf-8") as input_file:
+            logger.info("Reading contents of '%s'...", args.device_list[0])
+            console.print(f""" [green]->[/green] Reading contents of '{args.device_list[0]}'...""")
+            device_list = input_file.read().splitlines()
+
+        logger.info("[%s] devices read from '%s'", len(device_list), args.device_list[0])
+        console.print(f"""    [{len(device_list)}] devices read from '{args.device_list[0]}'""")
+        print("")
+        get_username = Prompt.ask("Username", default="cisco")
+        get_password = Prompt.ask("Password", password=True)
+        print("")
+
+        counters = {"success": 0, "fail": 0}
+
+        with open(
+            f"""{backup_to}download_router_config_summary_{datetime.now().strftime("%Y%m%dT%H%M%S")}.csv""",
+            "w",
+            encoding="utf-8",
+        ) as summary_csv:
+            with Progress(
+                SpinnerColumn(),
+                *Progress.get_default_columns(),
+                TimeElapsedColumn(),
+                console=console,
+                transient=False,
+            ) as progress_bar:
+                download_configs = progress_bar.add_task("[red]Downloading...", total=len(device_list))
+                for device in device_list:
+                    try:
+                        logger.debug("Connecting to device '%s'...", device)
+                        napalm_driver = get_network_driver("ios")
+                        connect_device = napalm_driver(
+                            **{
+                                "hostname": device,
+                                "username": get_username,
+                                "password": get_password,
+                            }
+                        )
+                        connect_device.open()
+                        summary_csv.write(f"{device},success\n")
+                        with open(
+                            f"""{backup_to}{device}_config_{datetime.now().strftime("%Y%m%dT%H%M%S")}.log""",
+                            "w",
+                            encoding="utf-8",
+                        ) as config_backup:
+                            config_backup.write(connect_device.get_config()["running"])
+                        connect_device.close()
+                        counters["success"] += 1
+                    except ConnectionException as some_exception:
+                        logger.warning("ERROR==%s", some_exception)
+                        console.print(f"""[bright_yellow]WARNING:[/bright_yellow] {some_exception}""")
+                        summary_csv.write(f"{device},fail\n")
+                        counters["fail"] += 1
+                    progress_bar.advance(download_configs)
+
+        logger.info("[%s/%s] successfully backed up.", counters["success"], len(device_list))
+        logger.info("[%s/%s] failed to back up.", counters["fail"], len(device_list))
+        console.rule("Summary")
+        console.print(f"""[{counters["success"]}/{len(device_list)}] successfully backed up.""")
+        console.print(f"""[{counters["fail"]}/{len(device_list)}] failed to back up.""")
+
+
+def main():
+    """Do Something.
 
     Args
     ----
-    args : dict
 
     Returns
     -------
     None
     """
-    start_time = time.perf_counter()
+    start_time = perf_counter()
 
-    parser = ArgumentParser(
-        formatter_class=RawDescriptionHelpFormatter,
-        description=f"""{config.app_dict["name"]} {config.app_dict["version"]} {config.app_dict["date"]}\n--\nDescription: {config.app_dict["desc"]}\nAuthor:      {config.app_dict["author"]}\nURL:         {config.app_dict["url"]}""",
-    )
-    parser.add_argument(
-        "--device_list",
-        help="Text file containing Cisco device Hostnames or IP Addresses.",
-        required=True,
-    )
-    parser.add_argument(
-        "--backup_to",
-        help="Directory to save config files.",
-        required=False,
-    )
-    args = parser.parse_args()
-
-    # Setup Logging Functionality
-    logging.basicConfig(
-        filename=f"""{config.log_dict["path"]}{config.log_dict["prefix"]}{date.today().strftime("%Y%m%d")}.log""",
-        filemode="a",
-        format="{asctime}  Log Level: {levelname:8}  Line: {lineno:4}  Function: {funcName:21}  Msg: {message}",
-        style="{",
-        datefmt="%Y-%m-%dT%H:%M:%S",
-        level=config.log_dict["level"],
+    logger.info("")
+    logger_all.info("---------- START START START ----------")
+    logger_all.info(
+        "%s v%s (%s)",
+        config.app_dict["title"],
+        config.app_dict["version"],
+        config.app_dict["date"],
     )
 
-    logger.debug("START START START")
-
-    script_header = f"""{config.app_dict["title"]} {config.app_dict["version"]} ({config.app_dict["date"]})"""
-    logger.info(script_header)
-    logger.info("=" * len(script_header))
-
-    if vars(args)["backup_to"]:
-        ###
-        # NEED TO VALIDATE DIRECTORY EXISTS
-        ###
-        backup_to = vars(args)["backup_to"]
+    args = cli.parse_args()
+    if args.subcommand is None:
+        cli.print_help()
     else:
-        backup_to = f"{os.getcwd()}/"
-        logger.warning(f"--> Backup directory not provided; Backing up to {backup_to}...")
+        args.func(args)
 
-    logger.info(f"""--> Attempting to open file '{vars(args)["device_list"]}'...""")
-    with open(vars(args)["device_list"], "r", encoding="utf-8") as input_file:
-        logger.info(f"""--> Reading contents of '{vars(args)["device_list"]}'...""")
-        device_list = input_file.read().splitlines()
-
-    logger.info(f"""--> Read [{len(device_list)}] devices from '{vars(args)["device_list"]}'.""")
+    logger_all.info("Total Execution Time: %s seconds", round(perf_counter() - start_time, 2))
+    logger_all.info("----------   STOP STOP STOP  ----------")
     logger.info("")
-
-    get_username = input("Username: ")
-    get_password = getpass("Password: ")
-    logger.info("")
-    success_count = 0
-    fail_count = 0
-
-    summary_filename = f"""download_router_config_summary_{datetime.now().strftime("%Y%m%dT%H%M%S")}.csv"""
-    with open(f"{backup_to}{summary_filename}", "w", encoding="utf-8") as summary_csv:
-        for device in Bar("Working...", suffix="%(percent).f%% - %(eta)ds").iter(device_list):
-            device_dict = {
-                "hostname": device,
-                "username": get_username,
-                "password": get_password,
-            }
-            connect_device = None
-            try:
-                napalm_driver = get_network_driver("ios")
-                connect_device = napalm_driver(**device_dict)
-                connect_device.open()
-                summary_csv.write(f"{device},success\n")
-                device_filename = f"""{device}_config_{datetime.now().strftime("%Y%m%dT%H%M%S")}.log"""
-                with open(f"{backup_to}{device_filename}", "w", encoding="utf-8") as config_backup:
-                    config_backup.write(connect_device.get_config()["running"])
-                connect_device.close()
-                success_count += 1
-            except Exception:  # pylint: disable=broad-except
-                summary_csv.write(f"{device},fail\n")
-                fail_count += 1
-
-    logger.info("")
-    logger.info("Backup Summary:")
-    logger.info(f"""Device backup successful: {success_count}""")
-    logger.info(f"""Device backup failed:     {fail_count}""")
-    logger.info("")
-    logger.info(f"Total Execution Time: {(time.perf_counter() - start_time):.2f} seconds")
-    logger.debug("STOP STOP STOP")
-    return 0
 
 
 if __name__ == "__main__":
-    logger = logging.getLogger(__name__)
-    log_to_console = logging.StreamHandler()
-    log_to_console.setLevel(logging.INFO)
-    logger.addHandler(log_to_console)
     sys.exit(main())

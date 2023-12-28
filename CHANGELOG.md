@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [4.0.0] - 2023-12-28
+### Added
+- Added all the pretty console colors.
+### Changed
+- Replaced old code with my current Python template files.
+- Addressed all the linting issues along the way...
+- Replaced progress package (no longer maintained) with rich.
+- Replaced getpass package with rich password prompt.
+- .gitignore: Added PyCharm files.
+### Fixed
+- README.md: Fixed formatting; Updated Requirements/Assumptions/Limitations.
+- Dockerfile: Updated poetry/pip commands.
+
+
 ## [3.1.3] - 2023-12-27
 ### Added
 - .dockerignore: We should probably have one of these if we're using Docker.
