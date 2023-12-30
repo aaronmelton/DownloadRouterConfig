@@ -21,7 +21,7 @@ class Config:
             "desc": "A Python script to capture the running-config of Cisco Routers and Switches.",
             "title": "download_router_config",
             "url": "https://github.com/aaronmelton/DownloadRouterConfig",
-            "version": "4.0.1",
+            "version": "4.0.2",
         }
 
         # Logging Variables
