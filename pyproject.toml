@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "download_router_config"
-version = "4.0.0"
+version = "4.0.1"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [4.0.1] - 2023-12-30
+### Changed
+- Updating lxml (4.9.4 -> 5.0.0)
+- Minor changes to a couple log messages.
+- Suppressed printing output summary message if value was zero.
+### Fixed
+- README.md: Fixed instructions for running Docker image.
+
+
 ## [4.0.0] - 2023-12-28
 ### Added
 - Added all the pretty console colors.
