@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [4.0.2] - 2023-12-30
+### Changed
+- Minor change to summary text.
+
+
 ## [4.0.1] - 2023-12-30
 ### Changed
 - Updating lxml (4.9.4 -> 5.0.0)

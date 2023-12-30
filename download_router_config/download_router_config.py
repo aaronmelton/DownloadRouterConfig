@@ -107,8 +107,8 @@ def download(args):
                         counters["fail"] += 1
                     progress_bar.advance(download_configs)
 
-        logger.info("[%s/%s] successfully backed up.", counters["success"], len(device_list))
-        logger.info("[%s/%s] failed to back up.", counters["fail"], len(device_list))
+        logger.info("[%s/%s] devices successfully backed up.", counters["success"], len(device_list))
+        logger.info("[%s/%s] devices failed to back up.", counters["fail"], len(device_list))
         console.rule("Summary")
         if counters["success"]:
             console.print(f"""[{counters["success"]}/{len(device_list)}] successfully backed up.""")
