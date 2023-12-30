@@ -57,8 +57,8 @@ def download(args):
             console.print(f""" [green]->[/green] Reading contents of '{args.device_list[0]}'...""")
             device_list = input_file.read().splitlines()
 
-        logger.info("[%s] devices read from '%s'", len(device_list), args.device_list[0])
-        console.print(f"""    [{len(device_list)}] devices read from '{args.device_list[0]}'""")
+        logger.info("%s devices read from '%s'", len(device_list), args.device_list[0])
+        console.print(f"""    {len(device_list)} devices read from '{args.device_list[0]}'""")
         print("")
         get_username = Prompt.ask("Username", default="cisco")
         get_password = Prompt.ask("Password", password=True)
@@ -110,8 +110,10 @@ def download(args):
         logger.info("[%s/%s] successfully backed up.", counters["success"], len(device_list))
         logger.info("[%s/%s] failed to back up.", counters["fail"], len(device_list))
         console.rule("Summary")
-        console.print(f"""[{counters["success"]}/{len(device_list)}] successfully backed up.""")
-        console.print(f"""[{counters["fail"]}/{len(device_list)}] failed to back up.""")
+        if counters["success"]:
+            console.print(f"""[{counters["success"]}/{len(device_list)}] successfully backed up.""")
+        if counters["fail"]:
+            console.print(f"""[{counters["fail"]}/{len(device_list)}] failed to back up.""")
 
 
 def main():

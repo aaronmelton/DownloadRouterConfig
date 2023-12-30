@@ -47,7 +47,7 @@ For example, `python3 download_router_config.py download --device_list switches.
 `docker build -t download_router_config .`
 
 * To run the script:
-`docker run -v local_directory:container_directory -it -e LOG_LEVEL=DEBUG -e LOG_PATH=/tmp/ --rm download_router_config:latest --device_list /container_directory/switches.txt --backup_to /container_directory/`
+`docker run -v /local_directory:/container_directory -it -e LOG_LEVEL=DEBUG -e LOG_PATH=/tmp/ --rm download_router_config:latest download --device_list /container_directory/switches.txt --backup_to /container_directory/`
 
 Replace the values for LOG_LEVEL, LOG_PATH and CLI arguments (device_list, backup_to) to suit your needs.
 
