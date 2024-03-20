@@ -1,5 +1,44 @@
 # CHANGELOG
 
+## [4.1.0] - 2024-03-20
+### Changed
+- Refactored code to reduce Pylinting warnings.
+- Printing additional info at the start/end of script execution.
+- Removing anyio (4.2.0)
+- Removing gitdb (4.0.11)
+- Removing gitpython (3.1.40)
+- Removing smmap (5.0.1)
+- Removing sniffio (1.3.0)
+- Updating certifi (2023.11.17 -> 2024.2.2)
+- Updating cryptography (41.0.7 -> 42.0.5)
+- Updating future (0.18.3 -> 1.0.0)
+- Updating urllib3 (2.1.0 -> 2.2.1)
+- Updating lxml (5.0.0 -> 5.1.0)
+- Updating markupsafe (2.1.3 -> 2.1.5)
+- Installing setuptools (69.2.0)
+- Updating azure-core (1.29.6 -> 1.30.1)
+- Updating jinja2 (3.1.2 -> 3.1.3)
+- Updating ncclient (0.6.13 -> 0.6.15)
+- Updating netaddr (0.9.0 -> 1.2.1)
+- Updating ntc-templates (4.1.0 -> 4.4.0)
+- Updating packaging (23.2 -> 24.0)
+- Updating pluggy (1.3.0 -> 1.4.0)
+- Updating pyparsing (3.1.1 -> 3.1.2)
+- Updating azure-storage-blob (12.19.0 -> 12.19.1)
+- Updating dill (0.3.7 -> 0.3.8)
+- Updating junos-eznc (2.6.8 -> 2.7.0)
+- Updating netutils (1.6.0 -> 1.7.0)
+- Updating platformdirs (4.1.0 -> 4.2.0)
+- Updating pytest (7.4.3 -> 7.4.4)
+- Updating rich (13.7.0 -> 13.7.1)
+- Updating slack-sdk (3.26.1 -> 3.27.1)
+- Updating stevedore (5.1.0 -> 5.2.0)
+- Updating tomlkit (0.12.3 -> 0.12.4)
+- Updating ttp-templates (0.3.5 -> 0.3.6)
+- Updating bandit (1.7.6 -> 1.7.8)
+- Updating coverage (7.4.0 -> 7.4.4)
+
+
 ## [4.0.2] - 2023-12-30
 ### Changed
 - Minor change to summary text.
