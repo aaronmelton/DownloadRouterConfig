@@ -12,7 +12,9 @@ from aaron_common_libs.common_funcs import argument, cli, subcommand
 from aaron_common_libs.logger.custom_logger import CustomLogger
 from config import Config
 from napalm import get_network_driver
-from napalm.base.exceptions import ConnectionException
+
+# from napalm.base.exceptions import ConnectionException
+# from netmiko.exceptions import NetmikoAuthenticationException
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from rich.prompt import Prompt
@@ -40,16 +42,10 @@ logger_all = logging_handler.all
 def download(args):
     """Subcommand options for download operations."""
     logger.debug("args==%s", vars(args))
+    backup_to = args.backup_to[0] if args.backup_to else f"{getcwd()}/"
 
-    console.rule(f"""{config.app_dict["title"]} {config.app_dict["version"]} ({config.app_dict["date"]})""")
-
-    if not args.backup_to:
-        backup_to = f"{getcwd()}/"
-    else:
-        backup_to = args.backup_to[0]
-        if backup_to[-1] != "/":
-            backup_to += "/"
     if args.device_list and backup_to:
+        counters = {"success": 0, "fail": 0}
         console.print(f"""[green]-->[/green] Attempting to open file '{args.device_list[0]}'...""")
 
         with open(args.device_list[0], "r", encoding="utf-8") as input_file:
@@ -63,8 +59,6 @@ def download(args):
         get_username = Prompt.ask("Username", default="cisco")
         get_password = Prompt.ask("Password", password=True)
         print("")
-
-        counters = {"success": 0, "fail": 0}
 
         with open(
             f"""{backup_to}download_router_config_summary_{datetime.now().strftime("%Y%m%dT%H%M%S")}.csv""",
@@ -100,7 +94,9 @@ def download(args):
                             config_backup.write(connect_device.get_config()["running"])
                         connect_device.close()
                         counters["success"] += 1
-                    except ConnectionException as some_exception:
+                    # TODO: Need to replace general exception with the ones commented out in imports above WITHOUT
+                    # introducing a Pylint too-many-statements warning
+                    except Exception as some_exception:  # pylint: disable=broad-exception-caught
                         logger.warning("ERROR==%s", some_exception)
                         console.print(f"""[bright_yellow]WARNING:[/bright_yellow] {some_exception}""")
                         summary_csv.write(f"{device},fail\n")
@@ -136,6 +132,7 @@ def main():
         config.app_dict["version"],
         config.app_dict["date"],
     )
+    console.rule(f"""{config.app_dict["title"]} {config.app_dict["version"]} ({config.app_dict["date"]})""")
 
     args = cli.parse_args()
     if args.subcommand is None:
@@ -143,6 +140,7 @@ def main():
     else:
         args.func(args)
 
+    console.rule(f"""Total Execution Time: {round(perf_counter() - start_time, 2)} seconds""", style="red")
     logger_all.info("Total Execution Time: %s seconds", round(perf_counter() - start_time, 2))
     logger_all.info("----------   STOP STOP STOP  ----------")
     logger.info("")
