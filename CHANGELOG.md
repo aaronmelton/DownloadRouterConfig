@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [4.1.0] - 2024-03-20
+## [4.1.1] - 2024-05-10
 ### Changed
 - Bumping Python to 3.12 and updating all library versions.
 
