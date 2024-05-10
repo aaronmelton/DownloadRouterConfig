@@ -1,27 +1,27 @@
 [tool.poetry]
 name = "download_router_config"
-version = "4.1.0"
+version = "4.1.1"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 aaron-common-libs = {git = "https://github.com/aaronmelton/aaron-common-libs.git"}
 napalm = "^4.1.0"
 rich = "^13.7.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
-black = "^23.7.0"
+black = "^24.4.2"
 coverage = "^7.2.7"
-flake8 = "^4.0.1"
+flake8 = "^7.0.0"
 isort = "^5.10.1"
 pydocstyle = "^6.1.1"
-pylint = "^2.12.2"
-pytest = "^7.1.1"
+pylint = "^3.1.0"
+pytest = "^8.2.0"
 pytest-env = "^1.0.1"
 toml = "^0.10.2"
-Flake8-pyproject = "^0.9.0"
+Flake8-pyproject = "^1.2.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

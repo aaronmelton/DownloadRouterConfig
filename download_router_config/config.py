@@ -1,4 +1,5 @@
 """download-router-config Config Class."""
+
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
@@ -17,11 +18,11 @@ class Config:
         """Application Variables."""
         self.app_dict = {
             "author": "Aaron Melton <aaron@aaronmelton.com>",
-            "date": "2024-03-20",
+            "date": "2024-05-10",
             "desc": "A Python script to capture the running-config of Cisco Routers and Switches.",
             "title": "download_router_config",
             "url": "https://github.com/aaronmelton/DownloadRouterConfig",
-            "version": "4.1.0",
+            "version": "4.1.1",
         }
 
         # Logging Variables
