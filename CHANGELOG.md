@@ -2,6 +2,11 @@
 
 ## [4.1.0] - 2024-03-20
 ### Changed
+- Bumping Python to 3.12 and updating all library versions.
+
+
+## [4.1.0] - 2024-03-20
+### Changed
 - Refactored code to reduce Pylinting warnings.
 - Printing additional info at the start/end of script execution.
 - Removing anyio (4.2.0)
