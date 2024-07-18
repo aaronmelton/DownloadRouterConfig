@@ -1,3 +1,4 @@
+![download_router_config.gif](download_router_config.gif)
 # Download Router Config
 
 A Python script to capture the running-config of Cisco Routers and Switches.
@@ -7,9 +8,7 @@ A Python script to capture the running-config of Cisco Routers and Switches.
 ### About This Code
 This script was originally written in Python2 and relied on [Exscript](https://github.com/knipknap/exscript/) to handle the 'heavy lifting' of communicating with the router.
 
-However, it appears that Exscript went the way of Python2 and is no longer supported.
-
-In conjunction with updating this code to work with Python3, I've selected [NAPALM](https://github.com/napalm-automation/napalm) to replace the functionality that Exscript once provided.
+However, in conjunction with updating this code to work with Python3, I've selected [NAPALM](https://github.com/napalm-automation/napalm) to replace the functionality that Exscript once provided.
 
 #### Requirements
 1. This application is hard-coded to use the SSH2 protocol; If SSH v2 is not enabled on your router(s), you will need to add `ip ssh version 2` to your Cisco router(s) configuration and any associated access-list changes.
