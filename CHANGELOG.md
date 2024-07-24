@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [4.1.3] - 2024-07-24
+### Changed
+- Updating bcrypt (4.1.3 -> 4.2.0)
+- Updating cryptography (42.0.8 -> 43.0.0)
+- Updating setuptools (71.0.3 -> 71.1.0)
+- Updating astroid (3.2.3 -> 3.2.4)
+- Updating azure-storage-blob (12.20.0 -> 12.21.0)
+- Updating pytest (8.2.2 -> 8.3.1)
+- Updating aaron-common-libs (0.2.1 919bd0e -> 0.3.1 527af3f)
+- Updating pylint (3.2.5 -> 3.2.6)
+
+
 ## [4.1.2] - 2024-07-18
 ### Changed
 - Bumping Python to 3.12 and updating all library versions.

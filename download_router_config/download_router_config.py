@@ -114,15 +114,7 @@ def download(args):
 
 
 def main():
-    """Do Something.
-
-    Args
-    ----
-
-    Returns
-    -------
-    None
-    """
+    """Do Something."""
     start_time = perf_counter()
 
     logger.info("")
