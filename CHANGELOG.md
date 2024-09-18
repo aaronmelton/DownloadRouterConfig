@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## [4.1.4] - 2024-09-18
+### Changed
+- Updating cffi (1.16.0 -> 1.17.1)
+- Updating certifi (2024.7.4 -> 2024.8.30)
+- Updating cryptography (43.0.0 -> 43.0.1)
+- Updating idna (3.7 -> 3.10)
+- Updating urllib3 (2.2.2 -> 2.2.3)
+- Updating lxml (5.2.2 -> 5.3.0)
+- Updating paramiko (3.4.0 -> 3.5.0)
+- Updating pyyaml (6.0.1 -> 6.0.2)
+- Updating setuptools (71.1.0 -> 75.1.0)
+- Updating azure-core (1.30.2 -> 1.31.0)
+- Updating pbr (6.0.0 -> 6.1.0)
+- Updating pycodestyle (2.12.0 -> 2.12.1)
+- Updating pyparsing (3.1.2 -> 3.1.4)
+- Updating transitions (0.9.1 -> 0.9.2)
+- Updating azure-storage-blob (12.21.0 -> 12.23.0)
+- Updating flake8 (7.1.0 -> 7.1.1)
+- Updating netmiko (4.3.0 -> 4.4.0)
+- Updating netutils (1.9.0 -> 1.9.1)
+- Updating platformdirs (4.2.2 -> 4.3.6)
+- Updating pyeapi (1.0.2 -> 1.0.4)
+- Updating pytest (8.3.1 -> 8.3.3)
+- Updating rich (13.7.1 -> 13.8.1)
+- Updating slack-sdk (3.31.0 -> 3.33.0)
+- Updating stevedore (5.2.0 -> 5.3.0)
+- Updating tomlkit (0.13.0 -> 0.13.2)
+- Updating aaron-common-libs (0.3.1 527af3f -> 0.3.2 7cc43a8)
+- Updating black (24.4.2 -> 24.8.0)
+- Updating coverage (7.6.0 -> 7.6.1)
+- Updating pylint (3.2.6 -> 3.2.7)
+- Updating pytest-env (1.1.3 -> 1.1.5)
+
+
 ## [4.1.3] - 2024-07-24
 ### Changed
 - Updating bcrypt (4.1.3 -> 4.2.0)
