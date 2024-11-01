@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [4.1.5] - 2024-11-01
+### Changed
+- Bumping Python library versions.
+- README.md: Improved Instructions For Use.
+- download_router_config.py: Improved error handling when connecting to devices.
+
+
 ## [4.1.4] - 2024-09-18
 ### Changed
 - Updating cffi (1.16.0 -> 1.17.1)

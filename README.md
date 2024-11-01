@@ -12,12 +12,12 @@ However, in conjunction with updating this code to work with Python3, I've selec
 
 #### Requirements
 1. This application is hard-coded to use the SSH2 protocol; If SSH v2 is not enabled on your router(s), you will need to add `ip ssh version 2` to your Cisco router(s) configuration and any associated access-list changes.
-1. A valid username/password.
-1. A text file containing hostnames or IP Addresses of your routers/switches, one entry per line.
+2. A valid username/password.
+3. A text file containing hostnames or IP Addresses of your routers/switches, one entry per line.
 
 #### Assumptions
 1. This application was written for use on Cisco IOS devices and cannot be guaranteed to work on other makes/model routers.
-1. This application assumes that you have enable privileges on each router in order to execute the `show running-config` command.  If you do not have sufficient user privileges, this application will not work as designed.
+2. This application assumes that you have enable privileges on each router in order to execute the `show running-config` command.  If you do not have sufficient user privileges, this application will not work as designed.
 
 #### Limitations
 1. This application uses the same username/password to access ALL routers. If your routers use unique usernames/passwords, then this script will not work. (Yes this is a terrible idea but let's not pretend it's not like this at many companies.)
@@ -27,7 +27,11 @@ However, in conjunction with updating this code to work with Python3, I've selec
 
 ### Instructions For Use
 
-* Clone this repository.
+* Clone this repository, create virtual environment and install packages.
+  * `git clone https://github.com/aaronmelton/DownloadRouterConfig.git`
+  * `cd DownloadRouterConfig`
+  * `poetry shell`
+  * `poetry update`
 * Follow instructions for Python or Docker (below).
 
 #### Python Commands
