@@ -13,9 +13,8 @@ from aaron_common_libs.common_funcs import argument, cli, subcommand
 from aaron_common_libs.logger.custom_logger import CustomLogger
 from config import Config
 from napalm import get_network_driver
-
-# from napalm.base.exceptions import ConnectionException
-# from netmiko.exceptions import NetmikoAuthenticationException
+from napalm.base.exceptions import ConnectionException
+from netmiko.exceptions import NetmikoAuthenticationException
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from rich.prompt import Prompt
@@ -95,11 +94,11 @@ def download(args):
                             config_backup.write(connect_device.get_config()["running"])
                         connect_device.close()
                         counters["success"] += 1
-                    # TODO: Need to replace general exception with the ones commented out in imports above WITHOUT
-                    # introducing a Pylint too-many-statements warning
-                    except Exception as some_exception:  # pylint: disable=broad-exception-caught
-                        logger.warning("ERROR==%s", some_exception)
-                        console.print(f"""[bright_yellow]WARNING:[/bright_yellow] {some_exception}""")
+                    except (ConnectionException, NetmikoAuthenticationException) as specific_error:
+                        logger.warning("Device connection error (%s): %s", device, specific_error)
+                        console.print(
+                            f"""[bright_yellow]WARNING: Device connection error ({device}): {specific_error}[/bright_yellow]"""
+                        )
                         summary_csv.write(f"{device},fail\n")
                         counters["fail"] += 1
                     progress_bar.advance(download_configs)

@@ -18,11 +18,11 @@ class Config:
         """Application Variables."""
         self.app_dict = {
             "author": "Aaron Melton <aaron@aaronmelton.com>",
-            "date": "2024-09-18",
+            "date": "2024-11-01",
             "desc": "A Python script to capture the running-config of Cisco Routers and Switches.",
             "title": "download_router_config",
             "url": "https://github.com/aaronmelton/DownloadRouterConfig",
-            "version": "4.1.4",
+            "version": "4.1.5",
         }
 
         # Logging Variables
