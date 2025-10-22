@@ -1,5 +1,67 @@
 # CHANGELOG
 
+## [4.1.7] - 2025-10-22
+### Changed
+- Updated Python version constraint from `>=3.12,<3.13` to `>=3.12,<4.0` to support Python 3.13 and future 3.x versions.
+
+
+## [4.1.6] - 2025-10-22
+### Changed
+- Removing future (1.0.0)
+- Removing pbr (6.1.0)
+- Updating pycparser (2.22 -> 2.23)
+- Updating cffi (1.17.1 -> 2.0.0)
+- Updating bcrypt (4.2.1 -> 5.0.0)
+- Updating cryptography (44.0.0 -> 46.0.3)
+- Installing invoke (2.2.1)
+- Updating pynacl (1.5.0 -> 1.6.0)
+- Updating pygments (2.19.1 -> 2.19.2)
+- Updating markdown-it-py (3.0.0 -> 4.0.0)
+- Updating paramiko (3.5.0 -> 4.0.0)
+- Updating pyyaml (6.0.2 -> 6.0.3)
+- Updating markupsafe (3.0.2 -> 3.0.3)
+- Updating textfsm (1.1.3 -> 2.1.0)
+- Updating lxml (5.3.0 -> 6.0.2)
+- Updating ruamel-yaml-clib (0.2.12 -> 0.2.14)
+- Updating certifi (2024.12.14 -> 2025.10.5)
+- Updating charset-normalizer (3.4.1 -> 3.4.4)
+- Updating iniconfig (2.0.0 -> 2.3.0)
+- Updating ncclient (0.6.16 -> 0.7.0)
+- Updating packaging (24.2 -> 25.0)
+- Updating idna (3.10 -> 3.11)
+- Updating pycodestyle (2.12.1 -> 2.14.0)
+- Updating pyflakes (3.2.0 -> 3.4.0)
+- Updating jinja2 (3.1.5 -> 3.1.6)
+- Updating ruamel-yaml (0.18.10 -> 0.18.16)
+- Updating urllib3 (2.3.0 -> 2.5.0)
+- Updating pluggy (1.5.0 -> 1.6.0)
+- Updating transitions (0.9.2 -> 0.9.3)
+- Updating pyparsing (3.2.1 -> 3.2.5)
+- Updating ntc-templates (7.6.0 -> 8.1.0)
+- Updating astroid (3.3.8 -> 3.3.11)
+- Updating click (8.1.8 -> 8.3.0)
+- Updating flake8 (7.1.1 -> 7.3.0)
+- Updating mypy-extensions (1.0.0 -> 1.1.0)
+- Updating netutils (1.12.0 -> 1.15.1)
+- Updating pytest (8.3.4 -> 8.4.2)
+- Updating requests (2.32.3 -> 2.32.5)
+- Updating stevedore (5.4.0 -> 5.5.0)
+- Updating tomlkit (0.13.2 -> 0.13.3)
+- Updating typing-extensions (4.12.2 -> 4.15.0)
+- Updating junos-eznc (2.7.1 -> 2.7.5)
+- Updating netmiko (4.5.0 -> 4.6.0)
+- Updating snowballstemmer (2.2.0 -> 3.0.1)
+- Updating dill (0.3.9 -> 0.4.0)
+- Updating setuptools (75.8.0 -> 80.9.0)
+- Updating platformdirs (4.3.6 -> 4.5.0)
+- Updating tablib (3.7.0 -> 3.9.0)
+- Updating coverage (7.6.10 -> 7.11.0)
+- Updating napalm (5.0.0 -> 5.1.0)
+- Updating pytest-env (1.1.5 -> 1.2.0)
+- Updating pylint (3.3.3 -> 3.3.9)
+- Updating bandit (1.8.2 -> 1.8.6)
+
+
 ## [4.1.5] - 2024-11-01
 ### Changed
 - Bumping Python library versions.
