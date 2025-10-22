@@ -1,16 +1,16 @@
 [tool.poetry]
 name = "download_router_config"
-version = "4.1.5"
+version = "4.1.7"
 description = "A Python script to capture the running-config of Cisco Routers and Switches."
 authors = ["Aaron Melton <aaron@aaronmelton.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.12.1"
+python = ">=3.12,<4.0"
 aaron-common-libs = {git = "https://github.com/aaronmelton/aaron-common-libs.git"}
 napalm = "^5.0.0"
 rich = "^13.9.3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 bandit = "^1.7.10"
 black = "^24.10.0"
 coverage = "^7.6.4"
