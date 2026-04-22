@@ -1,5 +1,47 @@
 # CHANGELOG
 
+## [4.1.8] - 2026-04-22
+### Security
+- Updating lxml (6.0.2 -> 6.1.0) — fixes GHSA XXE via default `iterparse()` / `ETCompatXMLParser()` configuration.
+- Updating cryptography (46.0.3 -> 46.0.7) — fixes buffer overflow with non-contiguous buffers, SECT curve subgroup validation, and incomplete DNS name constraint enforcement.
+- Updating urllib3 (2.5.0 -> 2.6.3) — fixes decompression-bomb safeguards on redirects, compressed-data mishandling, and unbounded decompression chains.
+- Updating requests (2.32.5 -> 2.33.1) — fixes insecure temp file reuse in `extract_zipped_paths()`.
+- Updating black (24.10.0 -> 26.3.1) — fixes arbitrary file writes from unsanitized cache file names.
+- Updating pytest (8.4.2 -> 9.0.3) — fixes vulnerable tmpdir handling.
+- Updating pynacl (1.6.0 -> 1.6.2) — fixes libsodium incomplete list of disallowed inputs.
+- Updating pygments (2.19.2 -> 2.20.0) — fixes ReDoS in GUID matching regex.
+### Changed
+- Bumped `pyproject.toml` constraints: `black ^24.10.0` -> `^26.3.1`, `pytest ^8.3.3` -> `^9.0.3`.
+- Updating bandit (1.8.6 -> 1.9.4)
+- Updating certifi (2025.10.5 -> 2026.4.22)
+- Updating charset-normalizer (3.4.4 -> 3.4.7)
+- Updating click (8.3.0 -> 8.3.2)
+- Updating coverage (7.11.0 -> 7.13.5)
+- Updating dill (0.4.0 -> 0.4.1)
+- Updating flake8-pyproject (1.2.3 -> 1.2.4)
+- Updating idna (3.11 -> 3.12)
+- Updating invoke (2.2.1 -> 3.0.3)
+- Updating junos-eznc (2.7.5 -> 2.7.6)
+- Updating ntc-templates (8.1.0 -> 9.1.0)
+- Updating packaging (25.0 -> 26.1)
+- Updating pathspec (0.12.1 -> 1.0.4)
+- Updating platformdirs (4.5.0 -> 4.9.6)
+- Updating pycparser (2.23 -> 3.0)
+- Updating pyparsing (3.2.5 -> 3.3.2)
+- Updating pytest-env (1.2.0 -> 1.6.0)
+- Updating ruamel-yaml (0.18.16 -> 0.19.1)
+- Updating setuptools (80.9.0 -> 82.0.1)
+- Updating stevedore (5.5.0 -> 5.7.0)
+- Updating tomlkit (0.13.3 -> 0.14.0)
+- Updating ttp (0.9.5 -> 0.10.1)
+- Updating ttp-templates (0.3.7 -> 0.5.1)
+- Installing python-dotenv (1.2.2)
+- Installing pytokens (0.4.1)
+- Installing yamlloader (1.6.0)
+- Removing ruamel-yaml-clib (0.2.14)
+- Removing yamlordereddictloader (0.4.2)
+
+
 ## [4.1.7] - 2025-10-22
 ### Changed
 - Updated Python version constraint from `>=3.12,<3.13` to `>=3.12,<4.0` to support Python 3.13 and future 3.x versions.
